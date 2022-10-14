@@ -10,9 +10,9 @@ exports.auth = (req, res, next) => {
       if (err) {
         res.clearCookie(COOKIE_SESSION_NAME);
 
-        // return next(err);
-        return res.redirect("/auth/login");
-        // return res.redirect('404');
+        return res
+          .status(401)
+          .send();
       }
 
       req.user = decodedToken;
