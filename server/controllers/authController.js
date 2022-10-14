@@ -1,14 +1,20 @@
 const router = require("express").Router();
 const authService = require("../services/authService");
-const { isAuth, isGuest } = require("../middlewares/authMiddleware");
+const { isGuest } = require("../middlewares/authMiddleware");
 const { COOKIE_SESSION_NAME } = require("../constants");
-
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/login", isGuest, async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await authService.login(email, password);
+  try{
+    const user = await authService.login(email, password);
+  } catch(error){
+    return res
+    .status(400)
+    .send({error: getErrorMessage(error)});
+  }
+
   const jwUserToken = await authService.createUserToken(user);
 
   res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
