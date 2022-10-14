@@ -30,6 +30,11 @@ exports.login = async (email, password) => {
 exports.createUserToken = (user) => {
   const payload = {
     _id: user._id,
+    subject: user.subject,
+    role: user.role,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email: user.email,
     address: user.address,
   };
