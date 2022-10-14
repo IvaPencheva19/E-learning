@@ -7,23 +7,25 @@ const { getErrorMessage } = require("../utils/errorHelpers");
 router.post("/login", isGuest, async (req, res) => {
   const { email, password } = req.body;
 
-  try{
+  try {
     const user = await authService.login(email, password);
-  } catch(error){
+
+    const jwUserToken = await authService.createUserToken(user);
+
+    res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
+      httpOnly: true,
+    });
+
     return res
-    .status(400)
-    .send({error: getErrorMessage(error)});
+      .status(200)
+      .send();
+  } catch (error) {
+    return res
+      .status(400)
+      .send({ error: getErrorMessage(error) });
   }
 
-  const jwUserToken = await authService.createUserToken(user);
 
-  res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
-    httpOnly: true,
-  });
-
-  return res
-    .status(200)
-    .send();
 });
 
 router.post("/register", isGuest, async (req, res) => {
@@ -54,7 +56,7 @@ router.post("/register", isGuest, async (req, res) => {
     // mongoose error
     return res
       .status(400)
-      .send({error: getErrorMessage(error)});
+      .send({ error: getErrorMessage(error) });
   }
 });
 
@@ -68,7 +70,7 @@ router.post("/register", isGuest, async (req, res) => {
 router.get("/404", (req, res) => {
   return res
     .status(404)
-    .send({error: "Page not found"});
+    .send({ error: "Page not found" });
 });
 
 module.exports = router;
