@@ -27,6 +27,7 @@ router.get("/register", isGuest, (req, res) => {
 });
 
 router.post("/register", isGuest, async (req, res) => {
+  console.log("check");
   const { password, repeatPassword, ...userData } = req.body;
 
   if (password !== repeatPassword) {
@@ -44,7 +45,8 @@ router.post("/register", isGuest, async (req, res) => {
     res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
       httpOnly: true,
     });
-    res.redirect("/");
+    //res.redirect("/");
+    return createdUser;
   } catch (error) {
     // add mongoose error mapper
     return res.render("auth/register", {

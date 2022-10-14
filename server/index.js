@@ -1,6 +1,7 @@
 const express = require("express");
 const { PORT } = require("./config/env");
 const { dbInit } = require(`./config/Db`);
+const routes = require("./routes.js");
 //const cookieParser = require("cookie-parser");
 //const { auth } = require("./middlewares/authMiddleware");
 //const { errorHandler } = require("./middlewares/errorHandlerMiddleware");
@@ -22,8 +23,8 @@ app.use(
 app.use("/static", express.static("public"));
 
 // app.use(cookieParser());
-app.use(auth);
-// app.use(routes);
+//app.use(auth);
+app.use(routes);
 // app.use(errorHandler);
 
 dbInit().then(() =>
