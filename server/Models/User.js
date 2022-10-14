@@ -30,3 +30,7 @@ const userSchema = new mongoose.Schema({
     enum: ["student", "teacher"],
   },
 });
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;

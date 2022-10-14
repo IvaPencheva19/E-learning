@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
   subject: {
     type: String,
     required: [true, "Subject is required"],
@@ -23,3 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   topics: [Topic],
 });
+
+const Course = mongoose.model("Course", courseSchema);
+
+module.exports = Course;
