@@ -10,32 +10,44 @@ exports.auth = (req, res, next) => {
       if (err) {
         res.clearCookie(COOKIE_SESSION_NAME);
 
+        // the user has not valid token so we do not give access
         return res
           .status(401)
-          .send();
+          .send({ error: "Wrong or expired token" });
       }
 
+      // the user is logged and we the request can procced
+      // the user info is binded to the request object
       req.user = decodedToken;
       res.locals.user = decodedToken;
       next();
     });
   } else {
+
+    // continue as guest
     next();
   }
 };
 
+
+// check if current request is as guest
 exports.isAuth = (req, res, next) => {
   if (!req.user) {
-    // return res.redirect('/auth/login');
-    return res.redirect("404");
+    return res
+      .status(401)
+      .send({ error: "Unauthorized request" });
   }
 
   next();
 };
 
+
+// check if current request is authorized
 exports.isGuest = (req, res, next) => {
   if (req.user) {
-    return res.redirect("/");
+    return res
+      .satus(403)
+      .send({ error: "Functionality only for guest user" });
   }
 
   next();

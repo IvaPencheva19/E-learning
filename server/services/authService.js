@@ -36,11 +36,10 @@ exports.createUserToken = (user) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    address: user.address,
   };
 
   const options = {
-    expiresIn: "2d",
+    expiresIn: "1d",
   };
 
   const tokenPromise = new Promise((resolve, reject) => {
