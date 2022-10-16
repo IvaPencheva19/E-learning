@@ -23,7 +23,6 @@ exports.auth = (req, res, next) => {
       next();
     });
   } else {
-
     // continue as guest
     next();
   }

@@ -16,10 +16,9 @@ router.post("/login", isGuest, async (req, res) => {
       httpOnly: true,
     });
 
-    console.log(jwUserToken);
     return res
       .status(200)
-      .json(jwUserToken);
+      .send();
   } catch (error) {
     return res
       .status(400)
