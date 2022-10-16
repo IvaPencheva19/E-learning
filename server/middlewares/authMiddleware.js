@@ -46,7 +46,7 @@ exports.isAuth = (req, res, next) => {
 exports.isGuest = (req, res, next) => {
   if (req.user) {
     return res
-      .satus(403)
+      .status(403)
       .send({ error: "Functionality only for guest user" });
   }
 

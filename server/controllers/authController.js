@@ -16,9 +16,10 @@ router.post("/login", isGuest, async (req, res) => {
       httpOnly: true,
     });
 
+    console.log(jwUserToken);
     return res
       .status(200)
-      .send();
+      .json(jwUserToken);
   } catch (error) {
     return res
       .status(400)
@@ -67,7 +68,7 @@ router.post("/register", isGuest, async (req, res) => {
 //     .send();
 // });
 
-router.get("/404", (req, res) => {
+router.get("/404", (req, res) => { 
   return res
     .status(404)
     .send({ error: "Page not found" });
