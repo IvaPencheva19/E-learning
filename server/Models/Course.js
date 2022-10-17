@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const Topic = require("../models/Topic");
+
 const courseSchema = new mongoose.Schema({
   subject: {
     type: String,

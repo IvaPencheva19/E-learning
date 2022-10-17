@@ -11,6 +11,7 @@ router.post("/addCourse", isAuth, async (req, res) => {
 
   try {
     console.log(req.body);
+
     const courseData = {
       subject,
       description,
@@ -19,7 +20,9 @@ router.post("/addCourse", isAuth, async (req, res) => {
       finalDate,
       topics,
     };
+
     await courseService.create(courseData);
+    
     return res.status(201).send();
   } catch (error) {
     // mongoose error
