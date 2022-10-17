@@ -41,6 +41,7 @@ exports.createUserToken = (user) => {
 
   const options = {
     expiresIn: "2d",
+    expiresIn: "1d",
   };
 
   const tokenPromise = new Promise((resolve, reject) => {

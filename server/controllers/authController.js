@@ -67,7 +67,7 @@ router.post("/register", isGuest, async (req, res) => {
 //     .send();
 // });
 
-router.get("/404", (req, res) => {
+router.get("/404", (req, res) => { 
   return res
     .status(404)
     .send({ error: "Page not found" });
