@@ -15,15 +15,21 @@
         .navbarLogo {
             width: 10rem;
             height: 10rem;
+            margin: 0 2em;
         }
 
         .navButtonsContainer {
             display: flex;
             gap: 1em;
+            margin: 0 2em;
 
-            button {
+            .navigationLink {
                 background-color: #cea6dc;
                 color: white;
+                text-decoration: none;
+                font-size: larger;
+                padding: 0.5em 0.4em;
+                border-radius: 5px;
             }
         }
 

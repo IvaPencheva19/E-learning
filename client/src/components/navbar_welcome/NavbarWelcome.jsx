@@ -1,7 +1,7 @@
 import "./navbarWelcome.scss";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
-import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -13,8 +13,8 @@ const Navbar = () => {
         <img className="navbarLogo" src="./logo.png" alt="" />
 
         <div className="navButtonsContainer">
-          <Button> Login </Button>
-          <Button> Register </Button>
+          <Link className="navigationLink" to="/login">Login</Link>
+          <Link className="navigationLink" to="/register">Register</Link>
         </div>
       </div>
 
