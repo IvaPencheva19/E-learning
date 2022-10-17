@@ -1,3 +1,11 @@
-.welcomeImage{
-margin-left: 50%;
+.welcomeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin: 2em 3em 2em 3em;
+
+    .welcomeText{
+        font-size: 40px;
+    }
 }

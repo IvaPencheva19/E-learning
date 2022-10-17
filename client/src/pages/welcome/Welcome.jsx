@@ -1,10 +1,5 @@
-import Sidebar from "../../components/sidebar/Sidebar";
 import NavbarWelcome from "../../components/navbar_welcome/NavbarWelcome";
 import "./welcome.scss";
-import Widget from "../../components/widget/Widget";
-import Featured from "../../components/featured/Featured";
-
-import { Grid } from "@mui/material";
 
 const Home = () => {
   return (
@@ -12,14 +7,18 @@ const Home = () => {
       <div className="homeContainer">
         <NavbarWelcome />
 
-        <Grid container>
-          <Grid xs={4}>
-            <p>Welcome to the virtual classroom</p>
-          </Grid>
-          <Grid xs={4}>
-            <img className="welcomeImage" src="./welcomeImage.png" />
-          </Grid>
-        </Grid>
+        <section className="welcomeContainer">
+
+          <div className="welcomeText">
+            <p>Welcome to our virtual class!</p>
+          </div>
+
+          <div>
+            <img src="./welcomeImage.png" alt="" />
+          </div>
+          
+        </section>
+
       </div>
     </div>
   );
