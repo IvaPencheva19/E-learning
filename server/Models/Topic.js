@@ -7,20 +7,10 @@ const topicSchema = new mongoose.Schema({
     required: [true, "Name is required"],
   },
   materials: {
-    urls: [String],
+    type: [String],
   },
-});
-
-userSchema.pre("save", function (next) {
-  bcrypt
-    .hash(this.password, SALT_ROUNDS)
-    .then((hashedPassword) => {
-      this.password = hashedPassword;
-      next();
-    })
-    .catch((err) => console.log(err));
 });
 
 const Topic = mongoose.model("Topic", topicSchema);
 
-module.exports = Topic;
+module.exports = { Topic, topicSchema };

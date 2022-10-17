@@ -36,7 +36,7 @@ exports.createUserToken = (user) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    address: user.address,
+    // address: user.address,
   };
 
   const options = {
