@@ -5,20 +5,15 @@ const { getErrorMessage } = require("../utils/errorHelpers");
 const Course = require("../models/Course");
 
 router.post("/addCourse", isAuth, async (req, res) => {
-  const { subject, description, category, startDate, finalDate, topics } =
-    req.body;
-  console.log(subject, description, category, startDate, finalDate, topics);
-
+  const { subject, description, category, startDate, finalDate } = req.body;
   try {
-    console.log(req.body);
-
     const courseData = {
       subject,
       description,
       category,
       startDate,
       finalDate,
-      topics,
+      topics: [],
     };
 
     await courseService.create(courseData);

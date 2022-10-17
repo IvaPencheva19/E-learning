@@ -1,24 +1,24 @@
 const router = require("express").Router();
 const { isAuth } = require("../middlewares/authMiddleware");
 const topicService = require("../services/topicService");
+const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/addTopic", isAuth, async (req, res) => {
   const {
-    courseId,
     name,
-    materials } = req.body;
+    materials,
+    courseId
+  } = req.body;
 
   try {
-    
-    await topicService.create({
-      courseId,
-      name,
-      materials
-    });
+    const topic = await topicService.create({ name, materials });
 
-    return res.status(201).send();
+    const course = await courseService.findById(courseId);
+    course.topics.push(topic);
+    await courseService.update(course);
 
+    return res.status(201).json(course);
   } catch (error) {
     // mongoose error
     return res.status(400).send({ error: getErrorMessage(error) });
