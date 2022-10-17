@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const authService = require("../services/authService");
-const { isGuest } = require("../middlewares/authMiddleware");
+const { isGuest, isAuth } = require("../middlewares/authMiddleware");
 const { COOKIE_SESSION_NAME } = require("../constants");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
@@ -67,7 +67,7 @@ router.post("/register", isGuest, async (req, res) => {
 //     .send();
 // });
 
-router.get("/404", (req, res) => { 
+router.get("/404", isAuth, (req, res) => { 
   return res
     .status(404)
     .send({ error: "Page not found" });

@@ -5,10 +5,15 @@ const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/addTopic", isAuth, async (req, res) => {
-  const { name, materials, courseId } = req.body;
+  const {
+    name,
+    materials,
+    courseId
+  } = req.body;
 
   try {
     const topic = await topicService.create({ name, materials });
+
     const course = await courseService.findById(courseId);
     course.topics.push(topic);
     await courseService.update(course);
