@@ -1,24 +1,23 @@
-import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import MultipleSelectChip from "../../components/chip/Chip";
 import BasicSelect from "../../components/select/Select";
 
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
-import { createTheme, rgbToHex, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 
 import "./register.scss";
 import { theme } from "./theme";
+
+import {emailValidator, passwordDoNotMatch, minLengthValidator} from "../../utils/validators";
+
 function Copyright(props) {
   return (
     <Typography
@@ -30,13 +29,50 @@ function Copyright(props) {
   );
 }
 
-export default function Login() {
+export default function Register() {
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+    firstName: '',
+    lastName: '',
+  });
+
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+    firstName: '',
+    lastName: ''
+  });
+
+  const changeHandler = (e) => {
+    setValues(values => ({
+      ...values,
+      [e.target.name]: e.target.value
+    }));
+  }
+
+  
+
+  const isFormUnvalid = Object.values(errors).some(x => x);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+
+    const {
+      email,
+      password,
+      repeatPassword,
+      firstName,
+      lastName } = values;
+
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email,
+      password,
+      repeatPassword,
+      firstName,
+      lastName,
     });
   };
 
@@ -93,7 +129,13 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={values.email}
+                onChange={changeHandler}
+                onBlur={(e) => emailValidator(e, setErrors)}
               />
+              {errors.email &&
+                <p style={{ color: 'red' }}>Email is not valid!</p>
+              }
               <TextField
                 color="secondary"
                 margin="normal"
@@ -103,7 +145,13 @@ export default function Login() {
                 label="First name"
                 name="firstName"
                 autoComplete="text"
+                value={values.firstName}
+                onChange={changeHandler}
+                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
+              {errors.firstName &&
+                <p style={{ color: 'red' }}>First name should be at least 2 characters long!</p>
+              }
               <TextField
                 color="secondary"
                 margin="normal"
@@ -113,7 +161,13 @@ export default function Login() {
                 label="Last name"
                 name="lastName"
                 autoComplete="text"
+                value={values.lastName}
+                onChange={changeHandler}
+                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
+              {errors.lastName &&
+                <p style={{ color: 'red' }}>Last name should be at least 2 characters long!</p>
+              }
               <BasicSelect />
               <MultipleSelectChip />
               <TextField
@@ -126,8 +180,13 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={values.password}
+                onChange={changeHandler}
+                onBlur={(e) => minLengthValidator(e, 8, setErrors, values)}
               />
-
+              {errors.password &&
+                <p style={{ color: 'red' }}>Password should be at least 8 characters long!</p>
+              }
               <TextField
                 color="secondary"
                 margin="normal"
@@ -138,13 +197,20 @@ export default function Login() {
                 type="password"
                 id="repeatPassword"
                 autoComplete="current-password"
+                value={values.repeatPassword}
+                onChange={changeHandler}
+                onKeyUp={(e) => passwordDoNotMatch(values, setErrors)}
+                onBlur={(e) => passwordDoNotMatch(values, setErrors)}
               />
-
+              {errors.repeatPassword &&
+                <p style={{ color: 'red' }}>Passwords do not match!</p>
+              }
               <Button
                 className="Button"
                 type="submit"
                 fullWidth
                 variant="contained"
+                disabled={isFormUnvalid}
                 sx={{
                   mt: 3,
                   mb: 2,

@@ -1,8 +1,7 @@
-import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -11,10 +10,13 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, rgbToHex, ThemeProvider } from "@mui/material/styles";
-
+import { ThemeProvider } from "@mui/material/styles";
 import "./login.scss";
 import { theme } from "./theme";
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { emailValidator, minLengthValidator } from "../../utils/validators";
+
+
 function Copyright(props) {
   return (
     <Typography
@@ -27,12 +29,29 @@ function Copyright(props) {
 }
 
 export default function Login() {
+
+  const [values, setValues] = useState({
+    email: '',
+    password: ''
+  });
+  const [errors, setErrors] = useState({});
+
+  const changeHandler = (e) => {
+    setValues(state => ({
+      ...state,
+      [e.target.name]: e.target.value
+    }));
+  }
+
+  const isFormUnvalid = Object.values(errors).some(x => x);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const { email, password } = values;
+
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email,
+      password,
     });
   };
 
@@ -73,13 +92,10 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box
-              component="form"
-              noValidate
+            <ValidatorForm
               onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
             >
-              <TextField
+              <TextValidator
                 color="secondary"
                 margin="normal"
                 required
@@ -89,8 +105,14 @@ export default function Login() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={changeHandler}
+                value={values.email}
+                onBlur={(e) => emailValidator(e, setErrors)}
               />
-              <TextField
+              {errors.email &&
+                <p style={{ color: 'red' }}>Email is not valid!</p>
+              }
+              <TextValidator
                 color="secondary"
                 margin="normal"
                 required
@@ -100,7 +122,15 @@ export default function Login() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={changeHandler}
+                value={values.password}
+                onKeyUp={(e) => minLengthValidator(e, 8, setErrors, values)}
               />
+              {errors.password &&
+                <p style={{ color: 'red' }}>
+                  Password should be at least 8 characters long!
+                </p>
+              }
               <FormControlLabel
                 control={<Checkbox value="remember" color="secondary" />}
                 label="Remember me"
@@ -115,13 +145,14 @@ export default function Login() {
                   mb: 2,
                   color: "white",
                 }}
+                disabled={isFormUnvalid}
               >
                 Sign In
               </Button>
               <Grid container>
                 <Grid item xs>
                   <Link
-                    href="#"
+                    href="/passwordRecovery"
                     variant="body2"
                     sx={{ color: "secondary.main" }}
                   >
@@ -130,16 +161,16 @@ export default function Login() {
                 </Grid>
                 <Grid item>
                   <Link
-                    href="#"
+                    href="/register"
                     variant="body2"
                     sx={{ color: "secondary.main" }}
                   >
-                    {"Don't have an account? Sign Up"}
+                    Don't have an account? Sign Up
                   </Link>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
-            </Box>
+            </ValidatorForm>
           </Box>
         </Grid>
         <Grid
@@ -151,6 +182,6 @@ export default function Login() {
           sx={{}}
         />
       </Grid>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
