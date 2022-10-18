@@ -28,7 +28,7 @@ function Copyright(props) {
   );
 }
 
-export default function Login() {
+const Login = () => {
 
   const [values, setValues] = useState({
     email: '',
@@ -185,3 +185,5 @@ export default function Login() {
     </ThemeProvider >
   );
 }
+
+export default Login;

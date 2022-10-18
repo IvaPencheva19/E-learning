@@ -2,15 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2em;
-    margin: 2em 3em 2em 3em;
-    
-    
+    gap: 1em;
+    margin: 1rem;
+    width: 100%;
 
-    .welcomeText{
+    .welcomeText {
         font-size: 40px;
+        margin-left: 0.25rem;
     }
-}
-.homeContainer{
-    
+
+    .welcomeImg {
+        margin-right: 4rem;
+    }
 }
