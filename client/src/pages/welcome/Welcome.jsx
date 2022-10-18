@@ -16,7 +16,7 @@ const Welcome = () => {
       </div>
 
       <div className="welcomeImg">
-        <img src="./welcomeImage.png" alt="" />
+        <img src="./img/welcomeImage.png" alt="" />
       </div>
     </section>
   );

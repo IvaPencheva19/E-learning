@@ -7,7 +7,7 @@ const Navbar = () => {
       <Link
         to="/"
       >
-        <img className="navbarLogo" src="./connect.webp" alt="" />
+        <img className="navbarLogo" src="./img/connect.webp" alt="" />
       </Link>
 
       <div className="navButtonsContainer">
