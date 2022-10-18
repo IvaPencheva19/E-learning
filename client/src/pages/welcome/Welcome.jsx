@@ -1,4 +1,5 @@
 import NavbarWelcome from "../../components/navbar_welcome/NavbarWelcome";
+import Typography from "@mui/material/Typography";
 import "./welcome.scss";
 
 const Home = () => {
@@ -8,17 +9,21 @@ const Home = () => {
         <NavbarWelcome />
 
         <section className="welcomeContainer">
-
           <div className="welcomeText">
-            <p>Welcome to our virtual class!</p>
+            <Typography
+              variant="h1"
+              color="text.secondary"
+              align="center"
+              className="Title"
+            >
+              Welcome to our online class!
+            </Typography>
           </div>
 
           <div>
             <img src="./welcomeImage.png" alt="" />
           </div>
-          
         </section>
-
       </div>
     </div>
   );

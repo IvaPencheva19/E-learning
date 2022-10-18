@@ -11,9 +11,13 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import MultipleSelectChip from "../../components/chip/Chip";
+import BasicSelect from "../../components/select/Select";
+
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { createTheme, rgbToHex, ThemeProvider } from "@mui/material/styles";
 
-import "./login.scss";
+import "./register.scss";
 import { theme } from "./theme";
 function Copyright(props) {
   return (
@@ -68,10 +72,10 @@ export default function Login() {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
+              <AppRegistrationIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign up
             </Typography>
             <Box
               component="form"
@@ -95,16 +99,47 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
+                id="firstName"
+                label="First name"
+                name="firstName"
+                autoComplete="text"
+              />
+              <TextField
+                color="secondary"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Last name"
+                name="lastName"
+                autoComplete="text"
+              />
+              <BasicSelect />
+              <MultipleSelectChip />
+              <TextField
+                color="secondary"
+                margin="normal"
+                required
+                fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="secondary" />}
-                label="Remember me"
+
+              <TextField
+                color="secondary"
+                margin="normal"
+                required
+                fullWidth
+                name="repeatPassword"
+                label="Repeat password"
+                type="password"
+                id="repeatPassword"
+                autoComplete="current-password"
               />
+
               <Button
                 className="Button"
                 type="submit"
@@ -116,28 +151,9 @@ export default function Login() {
                   color: "white",
                 }}
               >
-                Sign In
+                Register
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link
-                    href="#"
-                    variant="body2"
-                    sx={{ color: "secondary.main" }}
-                  >
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link
-                    href="#"
-                    variant="body2"
-                    sx={{ color: "secondary.main" }}
-                  >
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
+              <Grid container></Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
