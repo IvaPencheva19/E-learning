@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const authService = require("../services/authService");
 const { isGuest, isAuth } = require("../middlewares/authMiddleware");
-const { COOKIE_SESSION_NAME } = require("../constants");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/login", isGuest, async (req, res) => {
@@ -12,13 +11,9 @@ router.post("/login", isGuest, async (req, res) => {
 
     const jwUserToken = await authService.createUserToken(user);
 
-    res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
-      httpOnly: true,
-    });
-
     return res
       .status(200)
-      .send();
+      .json({ accessToken: jwUserToken });
   } catch (error) {
     return res
       .status(400)
@@ -44,13 +39,9 @@ router.post("/register", isGuest, async (req, res) => {
     });
     const jwUserToken = await authService.createUserToken(createdUser);
 
-    res.cookie(COOKIE_SESSION_NAME, jwUserToken, {
-      httpOnly: true,
-    });
-
     return res.
       status(201).
-      send();
+      json({ accessToken: jwUserToken });
 
   } catch (error) {
     // mongoose error
@@ -60,14 +51,14 @@ router.post("/register", isGuest, async (req, res) => {
   }
 });
 
-// router.get("/logout", isAuth, (req, res) => {
-//   res.clearCookie(COOKIE_SESSION_NAME);
-//   return res
-//     .status(204)
-//     .send();
-// });
+router.get("/logout", isAuth, (req, res) => {
+  res.clearCookie(COOKIE_SESSION_NAME);
+  return res
+    .status(204)
+    .send();
+});
 
-router.get("/404", isAuth, (req, res) => { 
+router.get("/404", isAuth, (req, res) => {
   return res
     .status(404)
     .send({ error: "Page not found" });

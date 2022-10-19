@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
-const { COOKIE_SESSION_NAME } = require("../constants");
 const { SECRET } = require("../config/env");
 
 exports.auth = (req, res, next) => {
-  const token = req.cookies[COOKIE_SESSION_NAME];
+  const token = req.header('X-AuthorizeToken');
 
   if (token) {
     const decodedToken = jwt.verify(token, SECRET, (err, decodedToken) => {
       if (err) {
-        res.clearCookie(COOKIE_SESSION_NAME);
+        // invalidate session 
+        // res.clearCookie(COOKIE_SESSION_NAME);
 
         // the user has not valid token so we do not give access
         return res

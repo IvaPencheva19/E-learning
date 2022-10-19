@@ -34,7 +34,10 @@ const Login = () => {
     email: '',
     password: ''
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  });
 
   const changeHandler = (e) => {
     setValues(state => ({
