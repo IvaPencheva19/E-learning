@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
+const { TOKEN_NAME } = require("../config/constants");
 const { SECRET } = require("../config/env");
 
 exports.auth = (req, res, next) => {
-  const token = req.header('X-AuthorizeToken');
+  const token = req.header(TOKEN_NAME);
 
   if (token) {
     const decodedToken = jwt.verify(token, SECRET, (err, decodedToken) => {

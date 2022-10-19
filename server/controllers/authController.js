@@ -2,6 +2,7 @@ const router = require("express").Router();
 const authService = require("../services/authService");
 const { isGuest, isAuth } = require("../middlewares/authMiddleware");
 const { getErrorMessage } = require("../utils/errorHelpers");
+const { TOKEN_NAME } = require("../config/constants");
 
 router.post("/login", isGuest, async (req, res) => {
   const { email, password } = req.body;
@@ -13,7 +14,7 @@ router.post("/login", isGuest, async (req, res) => {
 
     return res
       .status(200)
-      .json({ accessToken: jwUserToken });
+      .json({ [TOKEN_NAME]: jwUserToken });
   } catch (error) {
     return res
       .status(400)
@@ -41,7 +42,7 @@ router.post("/register", isGuest, async (req, res) => {
 
     return res.
       status(201).
-      json({ accessToken: jwUserToken });
+      json({ [TOKEN_NAME]: jwUserToken });
 
   } catch (error) {
     // mongoose error
@@ -52,7 +53,8 @@ router.post("/register", isGuest, async (req, res) => {
 });
 
 router.get("/logout", isAuth, (req, res) => {
-  res.clearCookie(COOKIE_SESSION_NAME);
+  // res.clearCookie(COOKIE_SESSION_NAME);
+  // invalidate token
   return res
     .status(204)
     .send();
