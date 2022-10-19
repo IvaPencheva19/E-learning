@@ -13,14 +13,8 @@ import Navbar from "../../components/navbar_welcome/Navbar";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
 
-import "./register.scss";
+import "./addCourse.scss";
 import { theme } from "../../utils/theme";
-
-import {
-  emailValidator,
-  passwordDoNotMatch,
-  minLengthValidator,
-} from "../../utils/validators";
 
 function Copyright(props) {
   return (
@@ -33,16 +27,7 @@ function Copyright(props) {
   );
 }
 
-export default function Register() {
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    username: "",
-    repeatPassword: "",
-    firstName: "",
-    lastName: "",
-  });
-
+export default function AddCourse() {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -59,25 +44,14 @@ export default function Register() {
     }));
   };
 
-  const isFormUnvalid = Object.values(errors).some((x) => x);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const { email, password, repeatPassword, firstName, lastName } = values;
-
-    console.log({
-      email,
-      password,
-      repeatPassword,
-      firstName,
-      lastName,
-    });
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
       <Grid
         container
         component="main"
@@ -109,7 +83,7 @@ export default function Register() {
               <AppRegistrationIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Add course
             </Typography>
             <Box
               component="form"
@@ -129,11 +103,8 @@ export default function Register() {
                 autoFocus
                 value={values.email}
                 onChange={changeHandler}
-                onBlur={(e) => emailValidator(e, setErrors)}
               />
-              {errors.email && (
-                <p style={{ color: "red" }}>Email is not valid!</p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -145,7 +116,6 @@ export default function Register() {
                 autoComplete="text"
                 value={values.username}
                 onChange={changeHandler}
-                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
               <TextField
                 color="secondary"
@@ -158,13 +128,8 @@ export default function Register() {
                 autoComplete="text"
                 value={values.firstName}
                 onChange={changeHandler}
-                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
-              {errors.firstName && (
-                <p style={{ color: "red" }}>
-                  First name should be at least 2 characters long!
-                </p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -176,13 +141,8 @@ export default function Register() {
                 autoComplete="text"
                 value={values.lastName}
                 onChange={changeHandler}
-                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
-              {errors.lastName && (
-                <p style={{ color: "red" }}>
-                  Last name should be at least 2 characters long!
-                </p>
-              )}
+
               <BasicSelect />
               <MultipleSelectChip />
               <TextField
@@ -197,13 +157,8 @@ export default function Register() {
                 autoComplete="current-password"
                 value={values.password}
                 onChange={changeHandler}
-                onBlur={(e) => minLengthValidator(e, 8, setErrors, values)}
               />
-              {errors.password && (
-                <p style={{ color: "red" }}>
-                  Password should be at least 8 characters long!
-                </p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -216,25 +171,20 @@ export default function Register() {
                 autoComplete="current-password"
                 value={values.repeatPassword}
                 onChange={changeHandler}
-                onKeyUp={(e) => passwordDoNotMatch(values, setErrors)}
-                onBlur={(e) => passwordDoNotMatch(values, setErrors)}
               />
-              {errors.repeatPassword && (
-                <p style={{ color: "red" }}>Passwords do not match!</p>
-              )}
+
               <Button
                 className="Button"
                 type="submit"
                 fullWidth
                 variant="contained"
-                disabled={isFormUnvalid}
                 sx={{
                   mt: 3,
                   mb: 2,
                   color: "white",
                 }}
               >
-                Register
+                Add course
               </Button>
               <Grid container></Grid>
               <Copyright sx={{ mt: 5 }} />

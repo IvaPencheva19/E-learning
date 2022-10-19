@@ -13,12 +13,12 @@ const Featured = () => {
         <MoreVertIcon fontSize="small" />
       </div>
       <div className="bottom">
-        <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
-        </div>
-        <p className="title">Average quizzes result</p>
         <p className="amount">7</p>
-        <p className="title">Pending quizzes</p>
+        <p className="title">Courses</p>
+        <p className="amount">30</p>
+        <p className="title">Tpoics</p>
+        <p className="amount">20</p>
+        <p className="title">Students</p>
       </div>
     </div>
   );

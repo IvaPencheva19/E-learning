@@ -1,24 +1,28 @@
 import Typography from "@mui/material/Typography";
 import "./welcome.scss";
+import Navbar from "../../components/navbar_welcome/Navbar";
 
 const Welcome = () => {
   return (
-    <section className="welcomeContainer">
-      <div className="welcomeText">
-        <Typography
-          variant="h1"
-          color="text.secondary"
-          align="center"
-          className="Title"
-        >
-          Welcome to our online class!
-        </Typography>
-      </div>
+    <>
+      <Navbar />
+      <section className="welcomeContainer">
+        <div className="welcomeText">
+          <p
+            variant="h1"
+            color="text.secondary"
+            align="center"
+            className="Title"
+          >
+            Welcome to our online class!
+          </p>
+        </div>
 
-      <div className="welcomeImg">
-        <img src="./img/welcomeImage.png" alt="" />
-      </div>
-    </section>
+        <div className="welcomeImg">
+          <img src="./img/welcomeImage.png" alt="" />
+        </div>
+      </section>
+    </>
   );
 };
 

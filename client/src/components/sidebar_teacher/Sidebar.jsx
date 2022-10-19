@@ -8,6 +8,8 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import SearchIcon from "@mui/icons-material/Search";
 import QuizIcon from "@mui/icons-material/Quiz";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -25,25 +27,35 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/home" style={{ textDecoration: "none" }}>
+          <Link to="/homeTeacher" style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className="title">COURSERS</p>
-          <Link to="/viewAllCourses" style={{ textDecoration: "none" }}>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <Link
+              to="/viewAllCoursesTeacher"
+              style={{ textDecoration: "none" }}
+            >
+              <li>
+                <LibraryBooksIcon className="icon" />
+                <span>My courses</span>
+              </li>
+            </Link>
+          </Link>
+          <Link to="/addCourse" style={{ textDecoration: "none" }}>
             <li>
-              <LibraryBooksIcon className="icon" />
-              <span>My courses</span>
+              <PostAddIcon className="icon" />
+              <span>Add new course</span>
             </li>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
-            <li>
-              <SearchIcon className="icon" />
-              <span>Find course</span>
-            </li>
-          </Link>
+          <li>
+            <PersonAddAlt1Icon className="icon" />
+            <span>Student's requests</span>
+          </li>
+
           <li>
             <QuizIcon className="icon" />
             <span>Pending quizzes</span>

@@ -12,11 +12,11 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 import "./login.scss";
-import { theme } from "./theme";
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { theme } from "../../utils/theme";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { emailValidator, minLengthValidator } from "../../utils/validators";
-
-
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar_welcome/Navbar";
 function Copyright(props) {
   return (
     <Typography
@@ -29,24 +29,23 @@ function Copyright(props) {
 }
 
 const Login = () => {
-
   const [values, setValues] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const changeHandler = (e) => {
-    setValues(state => ({
+    setValues((state) => ({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
-  }
+  };
 
-  const isFormUnvalid = Object.values(errors).some(x => x);
+  const isFormUnvalid = Object.values(errors).some((x) => x);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,19 +56,24 @@ const Login = () => {
       password,
     });
   };
-
+  const navigate = useNavigate();
+  const [show, setShow] = useState(true);
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      {show ? <Navbar /> : null}
+      {/* <button onClick={()=>setShow(true)} >Show</button>
+       */}
+
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh" }}
+        className="gradientContainer"
+      >
         <CssBaseline />
-        <Grid
-          className="gradientContainer"
-          item
-          xs={false}
-          sm={4}
-          md={4}
-          sx={{}}
-        />
+
+        <Grid item xs={false} sm={4} md={4} sx={{}} />
+
         <Grid
           item
           xs={12}
@@ -79,6 +83,7 @@ const Login = () => {
           elevation={6}
           square
           className="Form"
+          sx={{}}
         >
           <Box
             sx={{
@@ -95,9 +100,7 @@ const Login = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <ValidatorForm
-              onSubmit={handleSubmit}
-            >
+            <ValidatorForm onSubmit={handleSubmit}>
               <TextValidator
                 color="secondary"
                 margin="normal"
@@ -112,9 +115,9 @@ const Login = () => {
                 value={values.email}
                 onBlur={(e) => emailValidator(e, setErrors)}
               />
-              {errors.email &&
-                <p style={{ color: 'red' }}>Email is not valid!</p>
-              }
+              {errors.email && (
+                <p style={{ color: "red" }}>Email is not valid!</p>
+              )}
               <TextValidator
                 color="secondary"
                 margin="normal"
@@ -129,11 +132,11 @@ const Login = () => {
                 value={values.password}
                 onKeyUp={(e) => minLengthValidator(e, 8, setErrors, values)}
               />
-              {errors.password &&
-                <p style={{ color: 'red' }}>
+              {errors.password && (
+                <p style={{ color: "red" }}>
                   Password should be at least 8 characters long!
                 </p>
-              }
+              )}
               <FormControlLabel
                 control={<Checkbox value="remember" color="secondary" />}
                 label="Remember me"
@@ -176,17 +179,10 @@ const Login = () => {
             </ValidatorForm>
           </Box>
         </Grid>
-        <Grid
-          className="gradientContainer"
-          item
-          xs={false}
-          sm={4}
-          md={4}
-          sx={{}}
-        />
+        <Grid item xs={false} sm={4} md={4} sx={{}} />
       </Grid>
-    </ThemeProvider >
+    </ThemeProvider>
   );
-}
+};
 
 export default Login;

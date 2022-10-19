@@ -1,3 +1,8 @@
+
+* {
+    font-family: 'Nunito',
+        sans-serif;
+}
 .welcomeContainer {
     display: flex;
     justify-content: center;
@@ -5,10 +10,14 @@
     gap: 1em;
     margin: 1rem;
     width: 100%;
+    
 
     .welcomeText {
-        font-size: 40px;
+        font-size: 90px;
         margin-left: 0.25rem;
+            font-family: 'Nunito',
+                    sans-serif;
+      
     }
 
     .welcomeImg {

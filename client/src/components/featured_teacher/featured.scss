@@ -17,25 +17,21 @@
   }
 
   .bottom {
-    padding: 90px;
+    padding: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
 
-    .featuredChart {
-      width: 100px;
-      height: 100px;
-    }
-
+  
     .title {
       font-weight: 500;
       color: gray;
     }
 
     .amount {
-      margin-top: 10px;
+
       font-size: 30px;
     }
 

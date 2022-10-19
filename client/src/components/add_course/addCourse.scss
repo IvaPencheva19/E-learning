@@ -1,0 +1,21 @@
+.gradientContainer {
+    background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
+}
+
+.Button {
+
+    background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(80, 49, 173, 1) 87%);
+
+
+}
+
+.Button:hover {
+
+    background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
+}
+
+.Form {
+
+    border: 2px solid;
+    border-color: white;
+}
