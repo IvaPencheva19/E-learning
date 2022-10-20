@@ -1,32 +1,44 @@
+import { LOCAL_STORAGE_KEY, SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
+
 const request = async (method, url, data) => {
     try {
-        let requestBuilder;
+        const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
+        const auth = JSON.parse(authData || '{}');
+        let headers = {};
+
+        if (auth.accessToken) {
+            headers[SERVER_AUTHORIZATION_HEADER_NAME] = auth.accessToken;
+        }
+
+        let buildRequest;
 
         if (method === "GET") {
-            requestBuilder = fetch(url);
-
+            buildRequest = fetch(url, { headers });
         } else {
-
-            requestBuilder = fetch(url, {
+            buildRequest = fetch(url, {
                 method,
                 headers: {
-                    'content-type': 'application/json',
+                    ...headers,
+                    'Content-Type': 'Application/json',
                 },
                 body: JSON.stringify(data),
             });
         }
+        const response = await buildRequest;
+        const result = await response.json();
 
-        const response = await requestBuilder;
-        const result = response.json();
-        
+        if (response.status == 400) {
+            throw new Error(result.error);
+        }
+
         return result;
     } catch (error) {
-
+        throw new Error(error);
     }
 };
 
-export const get = request.bind({}, 'GET');
-export const post = request.bind({}, 'POST');
-export const put = request.bind({}, 'PUT');
-export const patch = request.bind({}, 'PATCH');
-export const del = request.bind({}, 'DELETE');
+export const get = request.bind({}, "GET");
+export const post = request.bind({}, "POST");
+export const put = request.bind({}, "PUT");
+export const patch = request.bind({}, "PATCH");
+export const del = request.bind({}, "DELETE");
