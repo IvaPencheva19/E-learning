@@ -1,5 +1,5 @@
 import "./App.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "./context/AuthContext";
 import Login from "./pages/login/Login";
@@ -15,6 +15,7 @@ import { LOCAL_STORAGE_KEY } from "./config/constants";
 
 function App() {
   const [user, setUser] = useLocalStorage(LOCAL_STORAGE_KEY, {});
+  const navigate = useNavigate();
 
   const userLogin = (userData) => {
     setUser(userData);
@@ -22,6 +23,7 @@ function App() {
 
   const userLogout = () => {
     setUser({});
+    navigate('/');
   };
 
   return (
