@@ -12,7 +12,7 @@ exports.login = async (email, password) => {
 
   if (!user) {
     throw {
-      message: `Can not find email or password!`,
+      message: `Wrong email or password!`,
     };
   }
 
@@ -20,7 +20,7 @@ exports.login = async (email, password) => {
 
   if (!isValid) {
     throw {
-      message: `Can not find email or password!`,
+      message: `Wrong email or password!`,
     };
   }
 
@@ -36,12 +36,10 @@ exports.createUserToken = (user) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    // address: user.address,
   };
 
   const options = {
-    expiresIn: "2d",
-    expiresIn: "1d",
+    expiresIn: "1h",
   };
 
   const tokenPromise = new Promise((resolve, reject) => {
