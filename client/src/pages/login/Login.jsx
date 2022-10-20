@@ -1,4 +1,10 @@
-import { useState } from "react";
+import "./login.scss";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import jwt from 'jwt-decode';
+
+
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,12 +17,15 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
-import "./login.scss";
-import { theme } from "../../utils/theme";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { emailValidator, minLengthValidator } from "../../utils/validators";
-import { Routes, Route, useNavigate } from "react-router-dom";
+
 import Navbar from "../../components/navbar_welcome/Navbar";
+import { SERVER_AUTHORIZATION_HEADER_NAME } from '../../config/constants';
+import { theme } from "../../utils/theme";
+import { emailValidator, minLengthValidator } from "../../utils/validators";
+import * as authService from '../../services/authService';
+import { AuthContext } from "../../context/AuthContext";
+import { CoPresentOutlined } from "@mui/icons-material";
+
 function Copyright(props) {
   return (
     <Typography
@@ -29,16 +38,25 @@ function Copyright(props) {
 }
 
 const Login = () => {
+  const navigation = useNavigate();
+  const { userLogin } = useContext(AuthContext);
+
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState({
+    serverMsg: '',
     email: "",
     password: "",
   });
 
   const changeHandler = (e) => {
+    setErrors(errors=> ({
+      ...errors,
+      serverMsg: '',
+    }));
+
     setValues((state) => ({
       ...state,
       [e.target.name]: e.target.value,
@@ -51,18 +69,25 @@ const Login = () => {
     event.preventDefault();
     const { email, password } = values;
 
-    console.log({
-      email,
-      password,
-    });
+    authService.login({ email, password })
+      .then(result => {
+        const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
+        user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
+
+        userLogin(user);
+        navigation('/home');
+      }).catch(err => {
+        setErrors(errors => ({
+          ...errors,
+          serverMsg: err.message,
+        }));
+      });
   };
-  const navigate = useNavigate();
-  const [show, setShow] = useState(true);
+
+
   return (
     <ThemeProvider theme={theme}>
-      {show ? <Navbar /> : null}
-      {/* <button onClick={()=>setShow(true)} >Show</button>
-       */}
+      <Navbar />
 
       <Grid
         container
@@ -101,6 +126,9 @@ const Login = () => {
               Sign in
             </Typography>
             <ValidatorForm onSubmit={handleSubmit}>
+              {errors.serverMsg &&
+                <p style={{ color: "red" }}>{errors.serverMsg}</p>
+              }
               <TextValidator
                 color="secondary"
                 margin="normal"

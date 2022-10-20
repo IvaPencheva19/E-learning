@@ -1,4 +1,7 @@
-import { useState } from "react";
+import "./register.scss";
+import { useContext, useState } from "react";
+import jwt from 'jwt-decode';
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,20 +10,23 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import MultipleSelectChip from "../../components/chip/Chip";
-import BasicSelect from "../../components/select/Select";
-import Navbar from "../../components/navbar_welcome/Navbar";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
 
-import "./register.scss";
-import { theme } from "../../utils/theme";
+import MultipleSelectChip from "../../components/chip/Chip";
+import BasicSelect from "../../components/select/Select";
+import Navbar from "../../components/navbar_welcome/Navbar";
 
+import { theme } from "../../utils/theme";
+import { SERVER_AUTHORIZATION_HEADER_NAME } from '../../config/constants';
 import {
   emailValidator,
   passwordDoNotMatch,
   minLengthValidator,
 } from "../../utils/validators";
+import * as authService from '../../services/authService';
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -34,6 +40,9 @@ function Copyright(props) {
 }
 
 export default function Register() {
+  const navigation = useNavigate();
+  const { userLogin } = useContext(AuthContext);
+
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -42,9 +51,10 @@ export default function Register() {
     firstName: "",
     lastName: "",
   });
-
   const [values, setValues] = useState({
     email: "",
+    role: "",
+    subjects: [],
     password: "",
     username: "",
     repeatPassword: "",
@@ -53,27 +63,34 @@ export default function Register() {
   });
 
   const changeHandler = (e) => {
+    setErrors((errors) => ({
+      ...errors,
+      serverMsg: '',
+    }));
+
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,
     }));
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const isFormUnvalid = Object.values(errors).some((x) => x);
+    authService.register(values)
+      .then(result => {
+        const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
+        user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const { email, password, repeatPassword, firstName, lastName } = values;
-
-    console.log({
-      email,
-      password,
-      repeatPassword,
-      firstName,
-      lastName,
-    });
+        userLogin(user);
+        navigation('/home');
+      }).catch(err => {
+        setErrors(errors => ({
+          ...errors,
+          serverMsg: err.message,
+        }));
+      });;
   };
+  const isFormUnvalid = Object.values(errors).some((x) => x);
 
   return (
     <ThemeProvider theme={theme}>
@@ -147,6 +164,11 @@ export default function Register() {
                 onChange={changeHandler}
                 onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
+              {errors.username && (
+                <p style={{ color: "red" }}>
+                  Username should be at least 2 characters long!
+                </p>
+              )}
               <TextField
                 color="secondary"
                 margin="normal"
@@ -183,8 +205,16 @@ export default function Register() {
                   Last name should be at least 2 characters long!
                 </p>
               )}
-              <BasicSelect />
+
+
+
+              <BasicSelect changeHandler={changeHandler} role={values.role} />
               <MultipleSelectChip />
+              {/* changeHandler={handleSubjectChange} subjects={values.subjects} */}
+
+
+
+
               <TextField
                 color="secondary"
                 margin="normal"
