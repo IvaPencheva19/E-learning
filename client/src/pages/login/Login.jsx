@@ -38,7 +38,6 @@ function Copyright(props) {
 }
 
 const Login = () => {
-  const navigation = useNavigate();
   const { userLogin } = useContext(AuthContext);
 
   const [values, setValues] = useState({
@@ -75,7 +74,6 @@ const Login = () => {
         user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
 
         userLogin(user);
-        navigation('/home');
       }).catch(err => {
         setErrors(errors => ({
           ...errors,

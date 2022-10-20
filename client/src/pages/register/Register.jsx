@@ -40,7 +40,6 @@ function Copyright(props) {
 }
 
 export default function Register() {
-  const navigation = useNavigate();
   const { userLogin } = useContext(AuthContext);
 
   const [errors, setErrors] = useState({
@@ -82,7 +81,6 @@ export default function Register() {
         user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
 
         userLogin(user);
-        navigation('/home');
       }).catch(err => {
         setErrors(errors => ({
           ...errors,

@@ -14,13 +14,13 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { LOCAL_STORAGE_KEY } from "./config/constants";
 
 function App() {
-  const [user, setUser] = useLocalStorage(LOCAL_STORAGE_KEY, {});
   const navigate = useNavigate();
+  const [user, setUser] = useLocalStorage(LOCAL_STORAGE_KEY, {});
 
   const userLogin = (userData) => {
     setUser(userData);
+    navigate('/home');
   };
-
   const userLogout = () => {
     setUser({});
     navigate('/');
