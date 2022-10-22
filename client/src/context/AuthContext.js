@@ -9,7 +9,8 @@ export const AuthContext = createContext({
     // default parameters for better intellisense
     user: {},
     userLogin: function () { },
-    userLogout: function () { }
+    userLogout: function () { },
+    isAuthenticated: false
 });
 
 export const AuthProvider = ({
@@ -27,7 +28,12 @@ export const AuthProvider = ({
         navigate('/');
     };
     return (
-        <AuthContext.Provider value={{ user, userLogin, userLogout }}>
+        <AuthContext.Provider value={{
+            user,
+            userLogin,
+            userLogout,
+            isAuthenticated: Boolean(Object.keys(user).length > 0),
+        }}>
             {children}
         </AuthContext.Provider>
     );

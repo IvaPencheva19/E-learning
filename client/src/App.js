@@ -10,6 +10,9 @@ import HomeTeacher from "./pages/home_teacher/Home";
 import AllCourses from "./pages/view_all_courses_student/AllCourses";
 import AllCoursesTeacher from "./pages/view_all_courses_teacher/AllCoursesTeacher";
 import AddCourse from "./pages/add_new_course/AddCourse";
+import { PrivateRoute } from "./components/common/PrivateRoute";
+import { PublicRoute } from "./components/common/PublicRoute";
+
 
 
 function App() {
@@ -18,17 +21,24 @@ function App() {
       <main id="main-content">
         <AuthProvider >
           <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/homeTeacher" element={<HomeTeacher />} />
-            <Route path="/viewAllCourses" element={<AllCourses />} />
-            <Route
-              path="/viewAllCoursesTeacher"
-              element={<AllCoursesTeacher />}
-            />
-            <Route path="/addCourse" element={<AddCourse />} />
+
+            <Route element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Welcome />} />
+            </Route>
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/homeTeacher" element={<HomeTeacher />} />
+              <Route path="/viewAllCourses" element={<AllCourses />} />
+              <Route
+                path="/viewAllCoursesTeacher"
+                element={<AllCoursesTeacher />}
+              />
+              <Route path="/addCourse" element={<AddCourse />} />
+            </Route>
+
           </Routes>
         </AuthProvider>
       </main>
