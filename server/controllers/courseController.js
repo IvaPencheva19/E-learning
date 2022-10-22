@@ -2,10 +2,10 @@ const router = require("express").Router();
 const { isAuth } = require("../middlewares/authMiddleware");
 const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
-const Course = require("../models/Course");
 
-router.post("/addCourse", isAuth, async (req, res) => {
+router.post("/", isAuth, async (req, res) => {
   const { subject, description, category, startDate, finalDate } = req.body;
+
   try {
     const courseData = {
       subject,
