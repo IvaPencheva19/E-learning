@@ -3,7 +3,25 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { SECRET } = require("../config/env");
 
-exports.create = (userData) => User.create(userData);
+exports.create = async (userData) => {
+  const { username, email } = userData;
+  
+  const usernameCheck = await User.findOne({ username: username });
+  if (usernameCheck) {
+    throw {
+      message: `User with that username already exists!`,
+    };
+  }
+
+  const emailCheck = await User.findOne({ email: email });
+  if(emailCheck){
+    throw {
+      message: `User with that email already exists!`,
+    };
+  }
+
+  return User.create(userData);
+};
 
 exports.login = async (email, password) => {
   const user = await User.findOne({

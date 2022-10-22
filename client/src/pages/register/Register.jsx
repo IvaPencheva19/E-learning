@@ -51,6 +51,7 @@ export default function Register() {
     lastName: "",
   });
   const [values, setValues] = useState({
+    serverMsg: '',
     email: "",
     role: "",
     subjects: [],
@@ -132,6 +133,9 @@ export default function Register() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
+              {errors.serverMsg &&
+                <p style={{ color: "red" }}>{errors.serverMsg}</p>
+              }
               <TextField
                 color="secondary"
                 margin="normal"
