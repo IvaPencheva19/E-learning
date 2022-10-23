@@ -5,24 +5,22 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect({
-  changeHandler,
-  role
-}) {
+export default function BasicSelect({ changeHandler, subject }) {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl color="secondary" margin="normal" required fullWidth>
-        <InputLabel id="demo-simple-select-label">Role</InputLabel>
+        <InputLabel id="demo-simple-select-label">Subject</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Age"
-          name="role"
-          value={role}
+          name="subject"
+          value={subject}
           onChange={(e) => changeHandler(e)}
         >
-          <MenuItem value={"Teacher"}>Teacher</MenuItem>
-          <MenuItem value={"Student"}>Student</MenuItem>
+          <MenuItem value={"Math"}>Math</MenuItem>
+          <MenuItem value={"Chemistry"}>Chemistry</MenuItem>
+          <MenuItem value={"Physics"}>Physics</MenuItem>
         </Select>
       </FormControl>
     </Box>

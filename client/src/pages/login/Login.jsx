@@ -1,8 +1,7 @@
 import "./login.scss";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwt from 'jwt-decode';
-
+import jwt from "jwt-decode";
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Avatar from "@mui/material/Avatar";
@@ -19,10 +18,10 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 
 import Navbar from "../../components/navbar_welcome/Navbar";
-import { SERVER_AUTHORIZATION_HEADER_NAME } from '../../config/constants';
+import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 import { theme } from "../../utils/theme";
 import { emailValidator, minLengthValidator } from "../../utils/validators";
-import * as authService from '../../services/authService';
+import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
 import { CoPresentOutlined } from "@mui/icons-material";
 
@@ -45,15 +44,15 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({
-    serverMsg: '',
+    serverMsg: "",
     email: "",
     password: "",
   });
 
   const changeHandler = (e) => {
-    setErrors(errors=> ({
+    setErrors((errors) => ({
       ...errors,
-      serverMsg: '',
+      serverMsg: "",
     }));
 
     setValues((state) => ({
@@ -68,20 +67,22 @@ const Login = () => {
     event.preventDefault();
     const { email, password } = values;
 
-    authService.login({ email, password })
-      .then(result => {
+    authService
+      .login({ email, password })
+      .then((result) => {
         const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
-        user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
-
+        user[SERVER_AUTHORIZATION_HEADER_NAME] =
+          result[SERVER_AUTHORIZATION_HEADER_NAME];
+        console.log(user[SERVER_AUTHORIZATION_HEADER_NAME]);
         userLogin(user);
-      }).catch(err => {
-        setErrors(errors => ({
+      })
+      .catch((err) => {
+        setErrors((errors) => ({
           ...errors,
           serverMsg: err.message,
         }));
       });
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -124,9 +125,9 @@ const Login = () => {
               Sign in
             </Typography>
             <ValidatorForm onSubmit={handleSubmit}>
-              {errors.serverMsg &&
+              {errors.serverMsg && (
                 <p style={{ color: "red" }}>{errors.serverMsg}</p>
-              }
+              )}
               <TextValidator
                 color="secondary"
                 margin="normal"

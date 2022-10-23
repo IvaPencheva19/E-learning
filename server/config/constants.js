@@ -1,1 +1,1 @@
-exports.TOKEN_NAME = 'X-AuthorizeToken';
+exports.TOKEN_NAME = "AuthorizeToken";

@@ -1,6 +1,6 @@
 import "./register.scss";
 import { useContext, useState } from "react";
-import jwt from 'jwt-decode';
+import jwt from "jwt-decode";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,13 +18,13 @@ import BasicSelect from "../../components/select/Select";
 import Navbar from "../../components/navbar_welcome/Navbar";
 
 import { theme } from "../../utils/theme";
-import { SERVER_AUTHORIZATION_HEADER_NAME } from '../../config/constants';
+import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 import {
   emailValidator,
   passwordDoNotMatch,
   minLengthValidator,
 } from "../../utils/validators";
-import * as authService from '../../services/authService';
+import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -64,7 +64,7 @@ export default function Register() {
   const changeHandler = (e) => {
     setErrors((errors) => ({
       ...errors,
-      serverMsg: '',
+      serverMsg: "",
     }));
 
     setValues((values) => ({
@@ -75,18 +75,21 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    authService.register(values)
-      .then(result => {
+    authService
+      .register(values)
+      .then((result) => {
         const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
-        user[SERVER_AUTHORIZATION_HEADER_NAME] = result[SERVER_AUTHORIZATION_HEADER_NAME];
+        user[SERVER_AUTHORIZATION_HEADER_NAME] =
+          result[SERVER_AUTHORIZATION_HEADER_NAME];
 
         userLogin(user);
-      }).catch(err => {
-        setErrors(errors => ({
+      })
+      .catch((err) => {
+        setErrors((errors) => ({
           ...errors,
           serverMsg: err.message,
         }));
-      });;
+      });
   };
   const isFormUnvalid = Object.values(errors).some((x) => x);
 
@@ -204,14 +207,14 @@ export default function Register() {
                 </p>
               )}
 
-
-
-              <BasicSelect changeHandler={changeHandler} role={values.role} />
+              <BasicSelect
+                changeHandler={changeHandler}
+                role={values.role}
+                title="Role"
+                type="role"
+              />
               <MultipleSelectChip />
               {/* changeHandler={handleSubjectChange} subjects={values.subjects} */}
-
-
-
 
               <TextField
                 color="secondary"

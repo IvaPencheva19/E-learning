@@ -19,17 +19,22 @@ function App() {
 
   const userLogin = (userData) => {
     setUser(userData);
-    navigate('/home');
-  };
-  const userLogout = () => {
-    setUser({});
-    navigate('/');
+    navigate("/home");
   };
 
+  const userLogout = () => {
+    setUser({});
+    navigate("/");
+  };
+  const backToHome = () => {
+    navigate("/home");
+  };
   return (
     <div id="box">
       <main id="main-content">
-        <AuthContext.Provider value={{ user, userLogin, userLogout }}>
+        <AuthContext.Provider
+          value={{ user, userLogin, userLogout, backToHome }}
+        >
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/login" element={<Login />} />

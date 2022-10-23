@@ -5,8 +5,22 @@ import Widget from "../../components/widget/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
+import * as courseService from "../../services/courseService";
 
 const Home = () => {
+  let courses;
+  const setCourses = (courses, result) => (courses = result);
+  const loadCoursers = () =>
+    courseService
+      .getCourses()
+      .then((result) => {
+        setCourses(courses, result);
+      })
+      .catch((err) => {});
+
+  //courses = loadCoursers();
+
+  console.log(courses);
   return (
     <div className="home">
       <Sidebar />
@@ -25,6 +39,7 @@ const Home = () => {
           <Widget />
         </div>
       </div>
+      <p>{}</p>;
     </div>
   );
 };
