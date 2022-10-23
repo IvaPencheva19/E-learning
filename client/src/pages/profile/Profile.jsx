@@ -1,14 +1,12 @@
 import "./profile.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 const Single = () => {
   const { user } = useContext(AuthContext);
   return (
-
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
@@ -41,9 +39,6 @@ const Single = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="right">
-            <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />
           </div>
         </div>
       </div>
