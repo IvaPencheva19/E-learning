@@ -1,5 +1,4 @@
-import SidebarStudent from "../../components/sidebar_student/SidebarStudent";
-import SidebarTeacher from "../../components/sidebar_teacher/SidebarTeacher";
+import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
 import Widget from "../../components/widget/Widget";
@@ -13,11 +12,8 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="home">
-
-      {user.role === 'Student'
-        ? <SidebarStudent />
-        : <SidebarTeacher />
-      }
+      
+      <Sidebar />
 
       <div className="homeContainer">
         <Navbar />
