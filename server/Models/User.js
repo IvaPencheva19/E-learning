@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Last name is required"],
   },
+  imageUrl: {
+    type: String,
+    required: [true, "Image url is required"],
+  },
   subject: {
     type: String,
   },

@@ -54,6 +54,7 @@ exports.createUserToken = (user) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
+    imageUrl: user.imageUrl
   };
 
   const options = {

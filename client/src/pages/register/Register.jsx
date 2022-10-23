@@ -58,6 +58,7 @@ export default function Register() {
     repeatPassword: "",
     firstName: "",
     lastName: "",
+    imageUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
   });
 
   const changeHandler = (e) => {
@@ -208,6 +209,20 @@ export default function Register() {
                   Last name should be at least 2 characters long!
                 </p>
               )}
+
+              <TextField
+                color="secondary"
+                margin="normal"
+                required
+                fullWidth
+                id="imageUrl"
+                label="Image url"
+                name="imageUrl"
+                autoComplete="text"
+                value={values.imageUrl}
+                onChange={changeHandler}
+              // onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+              />
 
               <BasicSelect
                 changeHandler={changeHandler}
