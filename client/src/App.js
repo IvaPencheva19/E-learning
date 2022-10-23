@@ -15,10 +15,34 @@ import { PublicRoute } from "./components/common/PublicRoute";
 
 
 function App() {
+
+  const navigate = useNavigate();
+  const [user, setUser] = useLocalStorage(LOCAL_STORAGE_KEY, {});
+
+  const userLogin = (userData) => {
+    setUser(userData);
+    navigate("/home");
+  };
+
+  const userLogout = () => {
+    setUser({});
+    navigate("/");
+  };
+  const backToHome = () => {
+    navigate("/home");
+  };
+  return (
+    <div id="box">
+      <main id="main-content">
+        <AuthContext.Provider
+          value={{ user, userLogin, userLogout, backToHome }}
+        >
+
   return (
     <div id="box">
       <main id="main-content">
         <AuthProvider >
+
           <Routes>
             {/* accessed by everyone routes */}
             <Route path="/" element={<Welcome />} />

@@ -4,21 +4,42 @@ const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/", isAuth, async (req, res) => {
+
+  const { name, subject, description, category, startDate, finalDate } =
+    req.body;
+
+  const newStartDate = new Date(startDate).toISOString();
+  const newFinalDate = new Date(finalDate).toISOString();
+
   const { subject, description, category, startDate, finalDate } = req.body;
+
 
   try {
     const courseData = {
+      name,
       subject,
       description,
       category,
-      startDate,
-      finalDate,
+      startDate: newStartDate,
+      finalDate: newFinalDate,
       topics: [],
     };
 
     await courseService.create(courseData);
-    
+
     return res.status(201).send();
+  } catch (error) {
+    // mongoose error
+    return res.status(400).send({ error: getErrorMessage(error) });
+  }
+});
+
+router.get("/", isAuth, async (req, res) => {
+  try {
+    console.log("here");
+    const courses = await courseService.getAll();
+    console.log(courses);
+    return res.status(201).send(courses);
   } catch (error) {
     // mongoose error
     return res.status(400).send({ error: getErrorMessage(error) });

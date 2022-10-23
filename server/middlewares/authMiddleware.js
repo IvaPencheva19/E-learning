@@ -8,13 +8,11 @@ exports.auth = (req, res, next) => {
   if (token) {
     const decodedToken = jwt.verify(token, SECRET, (err, decodedToken) => {
       if (err) {
-        // invalidate session 
+        // invalidate session
         // res.clearCookie(COOKIE_SESSION_NAME);
 
         // the user has not valid token so we do not give access
-        return res
-          .status(401)
-          .send({ error: "Wrong or expired token" });
+        return res.status(401).send({ error: "Wrong or expired token" });
       }
 
       // the user is logged and we the request can procced
@@ -29,25 +27,20 @@ exports.auth = (req, res, next) => {
   }
 };
 
-
 // check if current request is as guest
 exports.isAuth = (req, res, next) => {
   if (!req.user) {
-    return res
-      .status(401)
-      .send({ error: "Unauthorized request" });
+    console.log("unauth");
+    return res.status(401).send({ error: "Unauthorized request" });
   }
 
   next();
 };
 
-
 // check if current request is authorized
 exports.isGuest = (req, res, next) => {
   if (req.user) {
-    return res
-      .status(403)
-      .send({ error: "Functionality only for guest user" });
+    return res.status(403).send({ error: "Functionality only for guest user" });
   }
 
   next();
