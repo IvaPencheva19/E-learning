@@ -11,10 +11,10 @@ const Widget = ({
         <span className="title">Course name: {course.name}</span>
         <span className="counter">Info: {course.description}</span>
 
-        {/* <Link to={`/course/${course._id}`}> */}
-
-        {/* <span className="link">Link
-        </span> */}
+          <Link className="link" to={`/course/${course._id}`}>
+            Link to course
+          </Link>
+        
       </div>
       <div className="right">
         <div className="percentage positive">
