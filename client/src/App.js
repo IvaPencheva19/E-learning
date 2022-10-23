@@ -14,8 +14,6 @@ import { PublicRoute } from "./components/common/PublicRoute";
 import { TeacherRoute } from './components/common/TeacherRoute';
 import { StudentRoute } from './components/common/StudentRoute';
 
-
-
 function App() {
   return (
     <div id="box">

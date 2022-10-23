@@ -1,5 +1,5 @@
 import "./addCourse.scss";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -11,15 +11,15 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
-
 import SelectSubject from "../../components/select/SelectSubject";
+
 import SelectCategory from "../../components/select/SelectCategory";
 
 import { theme } from "../../utils/theme";
 import { minLengthValidator } from "../../utils/validators";
+import { dateValidator } from "../../utils/validators";
 import * as courseService from "../../services/courseService";
 import { useNavigate } from "react-router-dom";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 function Copyright(props) {
   return (
@@ -37,6 +37,7 @@ export default function AddCourse() {
 
   const [errors, setErrors] = useState({
     name: "",
+    startDate: "",
   });
   const [values, setValues] = useState({
     name: "",
@@ -65,16 +66,16 @@ export default function AddCourse() {
     courseService
       .addCourse(values)
       .then((result) => {
-        navigate('/home');
+        navigate("/home");
       })
       .catch((err) => {
-
         setErrors((errors) => ({
           ...errors,
           serverMsg: err.message,
         }));
       });
   };
+
   const isFormUnvalid = Object.values(errors).some((x) => x);
 
   return (
@@ -152,22 +153,26 @@ export default function AddCourse() {
                 type="date"
                 color="secondary"
                 required
-                name="startDate"
                 sx={{ width: "49%", marginRight: "2%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                name="startDate"
                 fullWidth
                 margin="normal"
                 onChange={changeHandler}
+                onBlur={(e) => dateValidator(e, setErrors, values)}
               />
+              {errors.startDate && 
+              <p style={{ color: "red" }}> </p>}
+
               <TextField
                 id="finalDate"
                 label="Final Date"
                 type="date"
                 color="secondary"
-                required
                 name="finalDate"
+                required
                 sx={{ width: "49%" }}
                 InputLabelProps={{
                   shrink: true,
@@ -176,6 +181,7 @@ export default function AddCourse() {
                 margin="normal"
                 onChange={changeHandler}
               />
+              {errors.startDate && <p style={{ color: "red" }}> Date error</p>}
               <textarea
                 id="description"
                 name="description"
