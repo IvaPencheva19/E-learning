@@ -8,7 +8,6 @@ export const PrivateRoute = ({
     const { isAuthenticated } = useContext(AuthContext);
 
     if (!isAuthenticated) {
-        console.log('private Route guard = ', isAuthenticated);
         return <Navigate to={'/login'} replace />
     }
 

@@ -14,3 +14,4 @@ client
 server
 	authMiddleware invalidate accessToken at row 5
 	authController /logout invalidate accesstToken at row 56
+	eventually more strict validation on server
