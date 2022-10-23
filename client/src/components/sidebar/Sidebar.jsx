@@ -40,16 +40,14 @@ const Sidebar = () => {
               </li>
             </Link>
             <p className="title">COURSERS</p>
-            <Link to="/users" style={{ textDecoration: "none" }}>
-              <Link
-                to="/course"
-                style={{ textDecoration: "none" }}
-              >
-                <li>
-                  <LibraryBooksIcon className="icon" />
-                  <span>My courses</span>
-                </li>
-              </Link>
+            <Link
+              to="/course"
+              style={{ textDecoration: "none" }}
+            >
+              <li>
+                <LibraryBooksIcon className="icon" />
+                <span>My courses</span>
+              </li>
             </Link>
             <Link to="/course/add" style={{ textDecoration: "none" }}>
               <li>
@@ -92,7 +90,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </div >
     );
   } else {
     return (

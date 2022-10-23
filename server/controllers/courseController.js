@@ -34,10 +34,10 @@ router.post("/", isAuth, async (req, res) => {
 
 router.get("/", isAuth, async (req, res) => {
   try {
-    console.log("here");
     const courses = await courseService.getAll();
     console.log(courses);
-    return res.status(201).send(courses);
+
+    return res.status(201).json(courses);
   } catch (error) {
     // mongoose error
     return res.status(400).send({ error: getErrorMessage(error) });

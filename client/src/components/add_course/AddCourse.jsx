@@ -122,6 +122,7 @@ export default function AddCourse() {
               <TextField
                 color="secondary"
                 margin="normal"
+                className="textField"
                 required
                 fullWidth
                 id="name"
@@ -134,10 +135,10 @@ export default function AddCourse() {
                 onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
               {errors.name && (
-                <p style={{ color: "red" }}>
+                <Typography style={{ color: "red" }}>
                   {" "}
                   First name should be at least 2 characters long!
-                </p>
+                </Typography>
               )}
               <SelectSubject
                 changeHandler={changeHandler}
@@ -148,12 +149,12 @@ export default function AddCourse() {
                 category={values.category}
               />
               <TextField
+                className="textField"
                 id="startDate"
                 label="Start Date"
                 type="date"
                 color="secondary"
                 required
-                sx={{ width: "49%", marginRight: "2%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -163,17 +164,17 @@ export default function AddCourse() {
                 onChange={changeHandler}
                 onBlur={(e) => dateValidator(e, setErrors, values)}
               />
-              {errors.startDate && 
-              <p style={{ color: "red" }}> </p>}
+              {errors.startDate &&
+                (<Typography style={{ color: "red" }}> Start date error </Typography>)}
 
               <TextField
+                className="textField"
                 id="finalDate"
                 label="Final Date"
                 type="date"
                 color="secondary"
                 name="finalDate"
                 required
-                sx={{ width: "49%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -181,7 +182,9 @@ export default function AddCourse() {
                 margin="normal"
                 onChange={changeHandler}
               />
-              {errors.startDate && <p style={{ color: "red" }}> Date error</p>}
+
+              {errors.finalDate && <Typography style={{ color: "red" }}> finalDate error</Typography>}
+
               <textarea
                 id="description"
                 name="description"
