@@ -12,7 +12,11 @@ exports.create = (courseData) => {
   });
 };
 exports.findById = (courseId) => Course.findById(courseId);
+
 exports.getAll = () => Course.find();
 
 exports.update = (course) =>
   Course.updateOne({ _id: course._id }, { $set: course });
+
+exports.update = (course) => Course.updateOne({ _id: course._id }, { $set: course });
+

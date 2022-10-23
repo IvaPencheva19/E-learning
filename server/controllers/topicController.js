@@ -4,7 +4,7 @@ const topicService = require("../services/topicService");
 const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
-router.post("/addTopic", isAuth, async (req, res) => {
+router.post("/", isAuth, async (req, res) => {
   const {
     name,
     materials,
