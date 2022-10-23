@@ -1,8 +1,6 @@
 import "./addCourse.scss";
 import { useContext, useState } from "react";
 
-import jwt from "jwt-decode";
-import format from "date-fns/format";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,11 +16,9 @@ import SelectSubject from "../../components/select/SelectSubject";
 import SelectCategory from "../../components/select/SelectCategory";
 
 import { theme } from "../../utils/theme";
-import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 import { minLengthValidator } from "../../utils/validators";
 import * as courseService from "../../services/courseService";
 import { AuthContext } from "../../context/AuthContext";
-import { Routes, Route, useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (

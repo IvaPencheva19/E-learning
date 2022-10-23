@@ -1,10 +1,7 @@
-import Sidebar from "../../components/sidebar_teacher/Sidebar";
+import Sidebar from "../../components/sidebar_student/SidebarStudent";
 import Navbar from "../../components/navbar/Navbar";
-import "./home.scss";
+import "./all_courses.scss";
 import Widget from "../../components/widget/Widget";
-import Featured from "../../components/featured_teacher/Featured";
-import Chart from "../../components/chart/Chart";
-import Table from "../../components/table/Table";
 
 const Home = () => {
   return (
@@ -18,9 +15,11 @@ const Home = () => {
           <Widget />
           <Widget />
         </div>
-        <div className="charts">
-          <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+        <div className="widgets">
+          <Widget />
+          <Widget />
+          <Widget />
+          <Widget />
         </div>
       </div>
     </div>

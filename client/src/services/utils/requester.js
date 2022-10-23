@@ -16,9 +16,6 @@ const request = async (method, url, data) => {
     }
 
     let buildRequest;
-    console.log(auth.email);
-    console.log(auth.AuthorizeToken);
-    console.log(headers[SERVER_AUTHORIZATION_HEADER_NAME]);
 
     if (method === "GET") {
       buildRequest = fetch(url, { headers });

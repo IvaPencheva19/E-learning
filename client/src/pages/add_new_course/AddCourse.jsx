@@ -1,4 +1,4 @@
-import Sidebar from "../../components/sidebar_teacher/Sidebar";
+import Sidebar from "../../components/sidebar_teacher/SidebarTeacher";
 import Navbar from "../../components/navbar/Navbar";
 import "./addCourse.scss";
 import AddCourse from "../../components/add_course/AddCourse";

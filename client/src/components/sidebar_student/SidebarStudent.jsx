@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 
-const Sidebar = () => {
+const SidebarStudent = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
@@ -88,4 +88,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarStudent;

@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
 
-import MultipleSelectChip from "../../components/chip/Chip";
 import BasicSelect from "../../components/select/Select";
 import Navbar from "../../components/navbar_welcome/Navbar";
 
@@ -26,7 +25,6 @@ import {
 } from "../../utils/validators";
 import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -217,8 +215,6 @@ export default function Register() {
                 title="Role"
                 type="role"
               />
-              <MultipleSelectChip />
-              {/* changeHandler={handleSubjectChange} subjects={values.subjects} */}
 
               <TextField
                 color="secondary"

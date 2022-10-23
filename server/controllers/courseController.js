@@ -11,8 +11,6 @@ router.post("/", isAuth, async (req, res) => {
   const newStartDate = new Date(startDate).toISOString();
   const newFinalDate = new Date(finalDate).toISOString();
 
-  const { subject, description, category, startDate, finalDate } = req.body;
-
 
   try {
     const courseData = {
