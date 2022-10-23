@@ -72,7 +72,6 @@ const Login = () => {
         const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
         user[SERVER_AUTHORIZATION_HEADER_NAME] =
           result[SERVER_AUTHORIZATION_HEADER_NAME];
-        console.log(user[SERVER_AUTHORIZATION_HEADER_NAME]);
         userLogin(user);
       })
       .catch((err) => {

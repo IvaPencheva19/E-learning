@@ -11,14 +11,15 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
-import SelectSubject from "../../components/select/SelectSubject";
 
+import SelectSubject from "../../components/select/SelectSubject";
 import SelectCategory from "../../components/select/SelectCategory";
 
 import { theme } from "../../utils/theme";
 import { minLengthValidator } from "../../utils/validators";
 import * as courseService from "../../services/courseService";
-import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 function Copyright(props) {
   return (
@@ -32,7 +33,7 @@ function Copyright(props) {
 }
 
 export default function AddCourse() {
-  const { backToHome } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     name: "",
@@ -57,23 +58,17 @@ export default function AddCourse() {
       [e.target.name]: e.target.value,
     }));
   };
-  const changeHandlerDate = (e) => {
-    console.log(e.target.value);
-    setValues((values) => ({
-      ...values,
-      [e.target.name]: e.target.value,
-    }));
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     courseService
       .addCourse(values)
       .then((result) => {
-        console.log(result);
-        backToHome();
+        navigate('/home');
       })
       .catch((err) => {
+
         setErrors((errors) => ({
           ...errors,
           serverMsg: err.message,
@@ -157,13 +152,14 @@ export default function AddCourse() {
                 type="date"
                 color="secondary"
                 required
+                name="startDate"
                 sx={{ width: "49%", marginRight: "2%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 fullWidth
                 margin="normal"
-                onChange={changeHandlerDate}
+                onChange={changeHandler}
               />
               <TextField
                 id="finalDate"
@@ -171,13 +167,14 @@ export default function AddCourse() {
                 type="date"
                 color="secondary"
                 required
+                name="finalDate"
                 sx={{ width: "49%" }}
                 InputLabelProps={{
                   shrink: true,
                 }}
                 fullWidth
                 margin="normal"
-                onChange={changeHandlerDate}
+                onChange={changeHandler}
               />
               <textarea
                 id="description"

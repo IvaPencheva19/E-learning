@@ -1,16 +1,6 @@
 const Course = require("../models/Course");
 
-exports.create = (courseData) => {
-  const course = Course.create(courseData);
-  const promise = new Promise((resolve, reject) => {
-    if (course) {
-      resolve();
-    } else {
-      reject();
-    }
-    return promise;
-  });
-};
+exports.create = (courseData) => Course.create(courseData);
 exports.findById = (courseId) => Course.findById(courseId);
 
 exports.getAll = () => Course.find();
