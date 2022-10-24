@@ -1,5 +1,11 @@
 import "./addCourse.scss";
 import { useState } from "react";
+import {
+  LOCAL_STORAGE_KEY,
+  SERVER_AUTHORIZATION_HEADER_NAME,
+} from "../../config/constants";
+
+import Alert from "@mui/material/Alert";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,6 +24,7 @@ import SelectCategory from "../../components/select/SelectCategory";
 import { theme } from "../../utils/theme";
 import { minLengthValidator } from "../../utils/validators";
 import { dateValidator } from "../../utils/validators";
+import { finalDateValidator } from "../../utils/validators";
 import * as courseService from "../../services/courseService";
 import { useNavigate } from "react-router-dom";
 
@@ -33,11 +40,16 @@ function Copyright(props) {
 }
 
 export default function AddCourse() {
+  const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+  const auth = JSON.parse(authData || "{}");
+
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     name: "",
     startDate: "",
+    finalDate: "",
   });
   const [values, setValues] = useState({
     name: "",
@@ -46,6 +58,7 @@ export default function AddCourse() {
     category: "",
     startDate: "2023-05-24T10:30",
     finalDate: "2024-05-24T10:30",
+    user: auth._id,
   });
 
   const changeHandler = (e) => {
@@ -130,16 +143,15 @@ export default function AddCourse() {
                 name="name"
                 autoComplete="text"
                 autoFocus
-                value={values.email}
+                value={values.name}
                 onChange={changeHandler}
-                onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+                onKeyUp={(e) => minLengthValidator(e, 2, setErrors, values)}
+                error={errors.name ? true : false}
+                helperText={
+                  errors.name ? "Name must be at least 2 characters" : ""
+                }
               />
-              {errors.name && (
-                <Typography style={{ color: "red" }}>
-                  {" "}
-                  First name should be at least 2 characters long!
-                </Typography>
-              )}
+
               <SelectSubject
                 changeHandler={changeHandler}
                 subject={values.subject}
@@ -163,12 +175,13 @@ export default function AddCourse() {
                 margin="normal"
                 onChange={changeHandler}
                 onBlur={(e) => dateValidator(e, setErrors, values)}
+                error={errors.startDate ? true : false}
+                helperText={
+                  errors.startDate ? "Start date must not be past" : ""
+                }
               />
-              {errors.startDate &&
-                (<Typography style={{ color: "red" }}> Start date error </Typography>)}
 
               <TextField
-                className="textField"
                 id="finalDate"
                 label="Final Date"
                 type="date"
@@ -181,9 +194,12 @@ export default function AddCourse() {
                 fullWidth
                 margin="normal"
                 onChange={changeHandler}
+                error={errors.finalDate ? true : false}
+                onBlur={(e) => finalDateValidator(e, setErrors, values)}
+                helperText={
+                  errors.finalDate ? "Final date must not be past or today" : ""
+                }
               />
-
-              {errors.finalDate && <Typography style={{ color: "red" }}> finalDate error</Typography>}
 
               <textarea
                 id="description"

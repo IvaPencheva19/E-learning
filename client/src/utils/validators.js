@@ -1,5 +1,19 @@
+function padTo2Digits(num) {
+  return num.toString().padStart(2, "0");
+}
+function formatDate(date) {
+  return [
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join("-");
+}
+
 function isDateBeforeToday(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
+}
+function isToday(date) {
+  return formatDate(date) === formatDate(new Date());
 }
 
 export const emailValidator = (e, setErrors) => {
@@ -22,7 +36,15 @@ export const minLengthValidator = (e, minLength, setErrors, values) => {
 export const dateValidator = (e, setErrors, values) => {
   setErrors((state) => ({
     ...state,
-    [e.target.name]: isDateBeforeToday(new Date(e.target.value))
+    [e.target.name]: isDateBeforeToday(new Date(e.target.value)),
+  }));
+};
+export const finalDateValidator = (e, setErrors, values) => {
+  setErrors((state) => ({
+    ...state,
+    [e.target.name]:
+      isDateBeforeToday(new Date(e.target.value)) ||
+      isToday(new Date(e.target.value)),
   }));
 };
 
@@ -32,6 +54,3 @@ export const passwordDoNotMatch = (values, setErrors) => {
     repeatPassword: values.password != values.repeatPassword,
   }));
 };
-
-
-

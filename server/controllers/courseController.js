@@ -4,13 +4,11 @@ const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/", isAuth, async (req, res) => {
-
-  const { name, subject, description, category, startDate, finalDate } =
+  const { name, subject, description, category, startDate, finalDate, user } =
     req.body;
 
   const newStartDate = new Date(startDate).toISOString();
   const newFinalDate = new Date(finalDate).toISOString();
-
 
   try {
     const courseData = {
@@ -21,10 +19,12 @@ router.post("/", isAuth, async (req, res) => {
       startDate: newStartDate,
       finalDate: newFinalDate,
       topics: [],
+      user,
+      students: [],
     };
 
     const course = await courseService.create(courseData);
-    
+
     return res.status(201).json(course);
   } catch (error) {
     // mongoose error
@@ -32,9 +32,11 @@ router.post("/", isAuth, async (req, res) => {
   }
 });
 
-router.get("/", isAuth, async (req, res) => {
+router.post("/add", isAuth, async (req, res) => {
   try {
-    const courses = await courseService.getAll();
+    const { id } = req.body;
+    console.log(req.body);
+    const courses = await courseService.getAll(id);
     console.log(courses);
 
     return res.status(201).json(courses);

@@ -138,11 +138,11 @@ const Login = () => {
                 autoFocus
                 onChange={changeHandler}
                 value={values.email}
-                onBlur={(e) => emailValidator(e, setErrors)}
+                onKeyUp={(e) => emailValidator(e, setErrors)}
+                error={errors.email ? true : false}
+                helperText={errors.email ? "Email is not valid" : ""}
               />
-              {errors.email && (
-                <p style={{ color: "red" }}>Email is not valid!</p>
-              )}
+
               <TextValidator
                 color="secondary"
                 margin="normal"
@@ -156,12 +156,14 @@ const Login = () => {
                 onChange={changeHandler}
                 value={values.password}
                 onKeyUp={(e) => minLengthValidator(e, 8, setErrors, values)}
+                error={errors.password ? true : false}
+                helperText={
+                  errors.password
+                    ? " Password should be at least 8 characters long!"
+                    : ""
+                }
               />
-              {errors.password && (
-                <p style={{ color: "red" }}>
-                  Password should be at least 8 characters long!
-                </p>
-              )}
+
               <FormControlLabel
                 control={<Checkbox value="remember" color="secondary" />}
                 label="Remember me"

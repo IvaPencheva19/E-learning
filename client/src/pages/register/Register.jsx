@@ -49,7 +49,7 @@ export default function Register() {
     lastName: "",
   });
   const [values, setValues] = useState({
-    serverMsg: '',
+    serverMsg: "",
     email: "",
     role: "",
     subjects: [],
@@ -58,7 +58,8 @@ export default function Register() {
     repeatPassword: "",
     firstName: "",
     lastName: "",
-    imageUrl: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+    imageUrl:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
   });
 
   const changeHandler = (e) => {
@@ -135,9 +136,9 @@ export default function Register() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              {errors.serverMsg &&
+              {errors.serverMsg && (
                 <p style={{ color: "red" }}>{errors.serverMsg}</p>
-              }
+              )}
               <TextField
                 color="secondary"
                 margin="normal"
@@ -150,11 +151,12 @@ export default function Register() {
                 autoFocus
                 value={values.email}
                 onChange={changeHandler}
+                onKeyUp={(e) => emailValidator(e, setErrors)}
                 onBlur={(e) => emailValidator(e, setErrors)}
+                error={errors.email ? true : false}
+                helperText={errors.email ? "Email is not valid!" : ""}
               />
-              {errors.email && (
-                <p style={{ color: "red" }}>Email is not valid!</p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -167,12 +169,15 @@ export default function Register() {
                 value={values.username}
                 onChange={changeHandler}
                 onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+                onKeyUp={(e) => minLengthValidator(e, 2, setErrors, values)}
+                error={errors.username ? true : false}
+                helperText={
+                  errors.username
+                    ? "Username should be at least 2 characters long!"
+                    : ""
+                }
               />
-              {errors.username && (
-                <p style={{ color: "red" }}>
-                  Username should be at least 2 characters long!
-                </p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -185,12 +190,15 @@ export default function Register() {
                 value={values.firstName}
                 onChange={changeHandler}
                 onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+                onKeyUp={(e) => minLengthValidator(e, 2, setErrors, values)}
+                error={errors.firstName ? true : false}
+                helperText={
+                  errors.firstName
+                    ? "First name should be at least 2 characters long!"
+                    : ""
+                }
               />
-              {errors.firstName && (
-                <p style={{ color: "red" }}>
-                  First name should be at least 2 characters long!
-                </p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -203,12 +211,14 @@ export default function Register() {
                 value={values.lastName}
                 onChange={changeHandler}
                 onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+                onKeyUp={(e) => minLengthValidator(e, 2, setErrors, values)}
+                error={errors.lastName ? true : false}
+                helperText={
+                  errors.lastName
+                    ? "Last name should be at least 2 characters long!"
+                    : ""
+                }
               />
-              {errors.lastName && (
-                <p style={{ color: "red" }}>
-                  Last name should be at least 2 characters long!
-                </p>
-              )}
 
               <TextField
                 color="secondary"
@@ -221,7 +231,7 @@ export default function Register() {
                 autoComplete="text"
                 value={values.imageUrl}
                 onChange={changeHandler}
-              // onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+                // onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
 
               <BasicSelect
@@ -244,12 +254,15 @@ export default function Register() {
                 value={values.password}
                 onChange={changeHandler}
                 onBlur={(e) => minLengthValidator(e, 8, setErrors, values)}
+                onKeyUp={(e) => minLengthValidator(e, 8, setErrors, values)}
+                error={errors.password ? true : false}
+                helperText={
+                  errors.password
+                    ? "  Password should be at least 8 characters long!"
+                    : ""
+                }
               />
-              {errors.password && (
-                <p style={{ color: "red" }}>
-                  Password should be at least 8 characters long!
-                </p>
-              )}
+
               <TextField
                 color="secondary"
                 margin="normal"
@@ -264,10 +277,12 @@ export default function Register() {
                 onChange={changeHandler}
                 onKeyUp={(e) => passwordDoNotMatch(values, setErrors)}
                 onBlur={(e) => passwordDoNotMatch(values, setErrors)}
+                error={errors.repeatPassword ? true : false}
+                helperText={
+                  errors.repeatPassword ? " Passwords do not match!" : ""
+                }
               />
-              {errors.repeatPassword && (
-                <p style={{ color: "red" }}>Passwords do not match!</p>
-              )}
+
               <Button
                 className="Button"
                 type="submit"

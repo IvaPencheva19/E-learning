@@ -10,5 +10,8 @@ export const theme = createTheme({
     otherColor: {
       main: "#999",
     },
+    error: {
+      main: "#ed2000",
+    },
   },
 });
