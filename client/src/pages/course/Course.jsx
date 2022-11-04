@@ -1,24 +1,28 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import "./all_courses.scss";
+import "./course.scss";
 import { useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
-import Widget from "../../components/widget/Widget";
+import CourseContainer from "../../components/course_container/CourseContainer";
+import { useParams } from "react-router-dom";
+import Chip from "@mui/material/Chip";
+
 import {
   LOCAL_STORAGE_KEY,
   SERVER_AUTHORIZATION_HEADER_NAME,
 } from "../../config/constants";
+import Typography from "@mui/material/Typography";
 const Home = () => {
   const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
 
   const auth = JSON.parse(authData || "{}");
-  const [courses, setCourses] = useState([]);
-
+  const [course, setCourse] = useState([]);
+  let { id } = useParams();
   useEffect(() => {
     courseService
-      .getCourses(auth._id, auth.role)
+      .getCourse(id)
       .then((result) => {
-        setCourses((oldState) => [...result]);
+        setCourse((oldState) => result);
       })
       .catch((err) => {
         console.error(err);
@@ -30,22 +34,8 @@ const Home = () => {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-
-        {courses.length > 0 ? (
-          courses.map((x) => (
-            <div className="widgets" key={x._id}>
-              <Widget key={x._id} course={x} />{" "}
-            </div>
-          ))
-        ) : (
-          <p>No current courses available!</p>
-        )}
-
-        <div className="widgets">
-          {/* <Widget /> */}
-          {/* <Widget /> */}
-          {/* <Widget /> */}
-          {/* <Widget /> */}
+        <div>
+          <CourseContainer course={course} />
         </div>
       </div>
     </div>

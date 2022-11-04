@@ -7,19 +7,20 @@ import Welcome from "./pages/welcome/Welcome";
 import Home from "./pages/home/Home";
 import AllCourses from "./pages/all_courses/AllCourses";
 import AddCourse from "./pages/add_new_course/AddCourse";
-import Profile from './pages/profile/Profile';
+import Profile from "./pages/profile/Profile";
+import Course from "./pages/course/Course";
 import { AuthProvider } from "./context/AuthContext";
 import { PrivateRoute } from "./components/common/PrivateRoute";
 import { PublicRoute } from "./components/common/PublicRoute";
-import { TeacherRoute } from './components/common/TeacherRoute';
-import { StudentRoute } from './components/common/StudentRoute';
+import { TeacherRoute } from "./components/common/TeacherRoute";
+import { StudentRoute } from "./components/common/StudentRoute";
+import ViewMembers from "./pages/view_members/ViewMembers";
 
 function App() {
   return (
     <div id="box">
       <main id="main-content">
-        <AuthProvider >
-
+        <AuthProvider>
           <Routes>
             {/* accessed by everyone routes */}
             <Route path="/" element={<Welcome />} />
@@ -45,8 +46,9 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/course" element={<AllCourses />} />
+              <Route path="/course/:id" element={<Course />} />
+              <Route path="/course/:id/members" element={<ViewMembers />} />
             </Route>
-
           </Routes>
         </AuthProvider>
       </main>

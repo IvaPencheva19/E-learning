@@ -23,7 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     courseService
-      .getCourses(auth._id)
+      .getCourses(auth._id, auth.role)
       .then((result) => {
         setCourses(result);
       })

@@ -12,25 +12,16 @@ router.post("/login", isGuest, async (req, res) => {
 
     const jwUserToken = await authService.createUserToken(user);
 
-    return res
-      .status(200)
-      .json({ [TOKEN_NAME]: jwUserToken });
+    return res.status(200).json({ [TOKEN_NAME]: jwUserToken });
   } catch (error) {
-    return res
-      .status(400)
-      .send({ error: getErrorMessage(error) });
+    return res.status(400).send({ error: getErrorMessage(error) });
   }
-
-
 });
 
 router.post("/register", isGuest, async (req, res) => {
-
   const { password, repeatPassword, ...userData } = req.body;
   if (password !== repeatPassword) {
-    return res
-      .status(400)
-      .send({ error: "Passwords missmatch!" });
+    return res.status(400).send({ error: "Passwords missmatch!" });
   }
 
   try {
@@ -40,30 +31,21 @@ router.post("/register", isGuest, async (req, res) => {
     });
     const jwUserToken = await authService.createUserToken(createdUser);
 
-    return res.
-      status(201).
-      json({ [TOKEN_NAME]: jwUserToken });
-
+    return res.status(201).json({ [TOKEN_NAME]: jwUserToken });
   } catch (error) {
     // mongoose error
-    return res
-      .status(400)
-      .send({ error: getErrorMessage(error) });
+    return res.status(400).send({ error: getErrorMessage(error) });
   }
 });
 
 router.get("/logout", isAuth, (req, res) => {
   // res.clearCookie(COOKIE_SESSION_NAME);
   // invalidate token
-  return res
-    .status(204)
-    .send();
+  return res.status(204).send();
 });
 
 router.get("/404", isAuth, (req, res) => {
-  return res
-    .status(404)
-    .send({ error: "Page not found" });
+  return res.status(404).send({ error: "Page not found" });
 });
 
 module.exports = router;

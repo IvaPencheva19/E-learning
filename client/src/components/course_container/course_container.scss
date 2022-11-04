@@ -1,0 +1,91 @@
+.course {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 10px;
+
+  box-shadow: 0px -4px 10px -3px rgba(206,
+    166,
+    220, 0.47);
+  border-radius: 10px;
+  height: 100%;
+  background-color: white;
+  margin-top: 2%;
+  margin-left: 2%;
+margin-right: 2%;
+
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+      font-weight: bold;
+    font-size: 40px;
+    
+      color: rgb(160, 160, 160);
+    }
+  
+    .desc {
+    margin-top: 1%;
+    }
+
+    .link {
+      width: max-content;
+      font-size: 20px;
+      border-bottom: 1px solid gray;
+      text-decoration: none;
+    }
+
+    .percentage {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &.positive {
+        color: #5031ad;
+      }
+      &.negative {
+        color: red;
+      }
+    }
+    #category{
+        margin-left: 10px;
+    }
+    
+
+    .icon {
+      font-size: 18px;
+      padding: 5px;
+      border-radius: 5px;
+      align-self: flex-end;
+    }
+  }
+}
+.accordion{
+    border-radius: 10px;
+ 
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.widgetsContainer {
+  background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
+}
+.addChip {
+  margin-top: 2%!important;
+  margin-left: 89%!important;
+  margin-bottom: -1%!important;
+  background-color: #daffb3!important;
+}
+
+.addChip:hover {
+
+  background-color: #ceff99!important;
+}
+.viewMembers{
+  margin-top: 2%!important;
+  background-color: #d3daed !important;
+}

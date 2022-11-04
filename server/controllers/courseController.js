@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { isAuth } = require("../middlewares/authMiddleware");
 const courseService = require("../services/courseService");
+const userService = require("../services/userService");
+
 const { getErrorMessage } = require("../utils/errorHelpers");
 
 router.post("/", isAuth, async (req, res) => {
@@ -24,7 +26,7 @@ router.post("/", isAuth, async (req, res) => {
     };
 
     const course = await courseService.create(courseData);
-
+    await userService.addCourse(user, course._id);
     return res.status(201).json(course);
   } catch (error) {
     // mongoose error
@@ -32,14 +34,32 @@ router.post("/", isAuth, async (req, res) => {
   }
 });
 
-router.post("/add", isAuth, async (req, res) => {
+router.post("/getAll", isAuth, async (req, res) => {
   try {
     const { id } = req.body;
-    console.log(req.body);
-    const courses = await courseService.getAll(id);
-    console.log(courses);
 
-    return res.status(201).json(courses);
+    const user = await userService.find(id);
+
+    const allCourses = await Promise.all(
+      user.courses.map(async (element) => {
+        return await courseService.findById(element);
+      })
+    );
+
+    return res.status(201).json(allCourses);
+  } catch (error) {
+    // mongoose error
+    return res.status(400).send({ error: getErrorMessage(error) });
+  }
+});
+
+router.post("/getCourse", isAuth, async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const course = await courseService.findById(id);
+
+    return res.status(201).json(course);
   } catch (error) {
     // mongoose error
     return res.status(400).send({ error: getErrorMessage(error) });

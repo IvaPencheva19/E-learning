@@ -5,7 +5,7 @@ const { SECRET } = require("../config/env");
 
 exports.create = async (userData) => {
   const { username, email } = userData;
-  
+
   const usernameCheck = await User.findOne({ username: username });
   if (usernameCheck) {
     throw {
@@ -14,7 +14,7 @@ exports.create = async (userData) => {
   }
 
   const emailCheck = await User.findOne({ email: email });
-  if(emailCheck){
+  if (emailCheck) {
     throw {
       message: `User with that email already exists!`,
     };
@@ -54,7 +54,7 @@ exports.createUserToken = (user) => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    imageUrl: user.imageUrl
+    imageUrl: user.imageUrl,
   };
 
   const options = {
