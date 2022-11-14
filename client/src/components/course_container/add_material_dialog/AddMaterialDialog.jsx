@@ -6,46 +6,47 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import "./add_topic_dialog.scss";
+
 import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { useContext, useState } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
-function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
+function AddMaterialDialog({
+  openDialogAddMaterial,
+  setOpenDialogAddMaterial,
+  setReload,
+  idTopic,
+}) {
   const [values, setValues] = useState({
-    name: "Topic",
-    materials: [],
+    material: "",
   });
+
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
-    console.log(values.name);
   };
   const handleClose = () => {
-    setOpenDialog(false);
+    setOpenDialogAddMaterial(false);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { name, materials } = values;
     topicService
-      .addTopic(courseId, name, materials)
+      .addMaterial(idTopic, values.material)
       .then((result) => {
         setReload(true);
       })
-      .catch((err) => {
-        console.error(err);
-      });
-    setOpenDialog(false);
+      .catch((err) => {});
+    setOpenDialogAddMaterial(false);
   };
   return (
     <ThemeProvider theme={theme}>
       <div className="dialog">
-        <Dialog open={openDialog} onClose={handleClose}>
-          <DialogTitle>Add Topic</DialogTitle>
+        <Dialog open={openDialogAddMaterial} onClose={handleClose}>
+          <DialogTitle>Add Material</DialogTitle>
           <ValidatorForm onSubmit={handleSubmit}>
             <DialogContent>
               <DialogContentText></DialogContentText>
@@ -53,15 +54,15 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
               <TextField
                 autoFocus
                 margin="dense"
-                id="name"
-                label="Name"
-                name="name"
+                id="material"
+                label="Material"
+                name="material"
                 type="text"
                 fullWidth
                 color="secondary"
                 variant="standard"
                 onChange={changeHandler}
-                value={values.name}
+                value={values.material}
               />
             </DialogContent>
             <DialogActions>
@@ -75,4 +76,4 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
   );
 }
 
-export default AddTopicDialog;
+export default AddMaterialDialog;

@@ -6,46 +6,50 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import "./add_topic_dialog.scss";
+
 import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { useContext, useState } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
-function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
+function EditTopicDialog({
+  openDialogEditTopic,
+  setOpenDialogEditTopic,
+  setReload,
+  idTopic,
+  nameTopic,
+}) {
   const [values, setValues] = useState({
-    name: "Topic",
-    materials: [],
+    name: nameTopic,
   });
+
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
-    console.log(values.name);
   };
   const handleClose = () => {
-    setOpenDialog(false);
+    setOpenDialogEditTopic(false);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { name, materials } = values;
     topicService
-      .addTopic(courseId, name, materials)
+      .editTopic(idTopic, values.name)
       .then((result) => {
+        console.log(result);
         setReload(true);
       })
-      .catch((err) => {
-        console.error(err);
-      });
-    setOpenDialog(false);
+      .catch((err) => {});
+    console.log(idTopic);
+    setOpenDialogEditTopic(false);
   };
   return (
     <ThemeProvider theme={theme}>
       <div className="dialog">
-        <Dialog open={openDialog} onClose={handleClose}>
-          <DialogTitle>Add Topic</DialogTitle>
+        <Dialog open={openDialogEditTopic} onClose={handleClose}>
+          <DialogTitle>Edit name</DialogTitle>
           <ValidatorForm onSubmit={handleSubmit}>
             <DialogContent>
               <DialogContentText></DialogContentText>
@@ -66,7 +70,7 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Add</Button>
+              <Button type="submit">Edit</Button>
             </DialogActions>
           </ValidatorForm>
         </Dialog>
@@ -75,4 +79,4 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
   );
 }
 
-export default AddTopicDialog;
+export default EditTopicDialog;

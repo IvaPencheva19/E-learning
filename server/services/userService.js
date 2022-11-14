@@ -8,3 +8,6 @@ exports.addCourse = (id, courseId) =>
   );
 
 exports.find = (id) => User.findById(id);
+exports.findByUsername = (username) => User.find({ username: username });
+
+exports.update = (user) => User.updateOne({ _id: user._id }, { $set: user });

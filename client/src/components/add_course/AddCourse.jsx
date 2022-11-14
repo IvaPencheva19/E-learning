@@ -1,12 +1,5 @@
 import "./addCourse.scss";
 import { useState } from "react";
-import {
-  LOCAL_STORAGE_KEY,
-  SERVER_AUTHORIZATION_HEADER_NAME,
-} from "../../config/constants";
-
-import Alert from "@mui/material/Alert";
-
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,17 +9,19 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
-import { ThemeProvider } from "@mui/material/styles";
 import SelectSubject from "../../components/select/SelectSubject";
-
 import SelectCategory from "../../components/select/SelectCategory";
-
+import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../utils/theme";
 import { minLengthValidator } from "../../utils/validators";
 import { dateValidator } from "../../utils/validators";
 import { finalDateValidator } from "../../utils/validators";
 import * as courseService from "../../services/courseService";
 import { useNavigate } from "react-router-dom";
+import {
+  LOCAL_STORAGE_KEY,
+  SERVER_AUTHORIZATION_HEADER_NAME,
+} from "../../config/constants";
 
 function Copyright(props) {
   return (

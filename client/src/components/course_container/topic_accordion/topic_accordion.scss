@@ -1,0 +1,55 @@
+
+.deleteMaterialButton{
+    background-color: #ffd6cc !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+}
+.deleteMaterialButton:hover {
+    background-color: #ffc2b3 !important;
+
+}
+
+.deleteTopic {
+    margin-top: 3% !important;
+    
+    background-color: #ffd6cc !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+
+}
+.deleteTopic:hover {
+    background-color: #ffc2b3 !important;
+
+}
+
+.addMaterial {
+border-radius: 20px !important;
+    box-shadow: none !important;
+    background-color: #daffb3 !important;
+
+}
+.addMaterial:hover {
+
+    background-color: #ceff99 !important;
+
+
+}
+.editTopic {
+    border-radius: 20px !important;
+        box-shadow: none !important;
+        background-color: #e1c8ea!important;
+}
+.editTopic:hover {
+background-color: #d7b5e3!important;
+}
+
+.topicButtons{
+    margin-top: 2% !important;
+    margin-left: 60%;
+}
+.topicButtons div {
+  display: inline-block;   
+margin-left: 2%;
+
+}
+

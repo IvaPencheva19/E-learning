@@ -3,7 +3,8 @@ import Navbar from "../../components/navbar/Navbar";
 import "./course.scss";
 import { useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
-import CourseContainer from "../../components/course_container/CourseContainer";
+import CourseContainerTeacher from "../../components/course_container/CourseContainerTeacher";
+import CourseContainerStudent from "../../components/course_container/CourseContainerStudent";
 import { useParams } from "react-router-dom";
 import Chip from "@mui/material/Chip";
 
@@ -35,7 +36,11 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div>
-          <CourseContainer course={course} />
+          {auth.role == "Teacher" ? (
+            <CourseContainerTeacher course={course} />
+          ) : (
+            <CourseContainerStudent course={course} />
+          )}
         </div>
       </div>
     </div>
