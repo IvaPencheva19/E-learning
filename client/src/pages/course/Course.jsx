@@ -1,24 +1,17 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./course.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
 import CourseContainerTeacher from "../../components/course_container/CourseContainerTeacher";
 import CourseContainerStudent from "../../components/course_container/CourseContainerStudent";
 import { useParams } from "react-router-dom";
-import Chip from "@mui/material/Chip";
-
-import {
-  LOCAL_STORAGE_KEY,
-  SERVER_AUTHORIZATION_HEADER_NAME,
-} from "../../config/constants";
-import Typography from "@mui/material/Typography";
+import { AuthContext } from "../../context/AuthContext";
 const Home = () => {
-  const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-  const auth = JSON.parse(authData || "{}");
+  let { user } = useContext(AuthContext);
   const [course, setCourse] = useState([]);
   let { id } = useParams();
+
   useEffect(() => {
     courseService
       .getCourse(id)
@@ -36,7 +29,7 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div>
-          {auth.role == "Teacher" ? (
+          {user.role == "Teacher" ? (
             <CourseContainerTeacher course={course} />
           ) : (
             <CourseContainerStudent course={course} />

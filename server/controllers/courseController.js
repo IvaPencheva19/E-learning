@@ -27,9 +27,11 @@ router.post("/", isAuth, async (req, res) => {
 
     const course = await courseService.create(courseData);
     await userService.addCourse(user, course._id);
+    console.log(course);
     return res.status(201).json(course);
   } catch (error) {
     // mongoose error
+    console.log(getErrorMessage(error));
     return res.status(400).send({ error: getErrorMessage(error) });
   }
 });

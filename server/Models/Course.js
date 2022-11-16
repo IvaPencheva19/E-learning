@@ -18,7 +18,7 @@ const courseSchema = new mongoose.Schema({
   startDate: {
     type: Date,
     required: [true, "Start date is required"],
-    min: Date.now(),
+    min: (Date.now() - (24*60*60*1000)),
   },
   finalDate: {
     type: Date,

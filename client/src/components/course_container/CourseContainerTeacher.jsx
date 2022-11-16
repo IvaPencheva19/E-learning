@@ -42,7 +42,6 @@ const CourseContainerTeacher = ({ course }) => {
     setStartDate(await course.startDate.toString().slice(0, 10));
     setFinalDate(await course.finalDate.toString().slice(0, 10));
   };
-  const getTopics = async () => {};
 
   useEffect(() => {
     sliceDates();

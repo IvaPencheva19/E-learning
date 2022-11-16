@@ -17,13 +17,7 @@ import SelectSubject from "../../../components/select/SelectSubject";
 import { minLengthValidator } from "../../../utils/validators";
 import { dateValidator } from "../../../utils/validators";
 import { finalDateValidator } from "../../../utils/validators";
-import {
-  LOCAL_STORAGE_KEY,
-  SERVER_AUTHORIZATION_HEADER_NAME,
-} from "../../../config/constants";
-const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-const auth = JSON.parse(authData || "{}");
 function EditCourseDialog({
   openDialogEditCourse,
   setOpenDialogEditCourse,

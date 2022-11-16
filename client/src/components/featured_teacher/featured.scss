@@ -27,20 +27,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 2em;
 
   
     .title {
       font-weight: 500;
       color: gray;
+      display: flex;
+      justify-content: space-between;
     }
 
     .amount {
-
+      color: black;
       font-size: 30px;
     }
-
-
-  
   }
 }

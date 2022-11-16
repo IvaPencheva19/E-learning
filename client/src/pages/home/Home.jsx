@@ -52,7 +52,7 @@ const Home = () => {
         <div className="charts">
           {user.role === "Student" ? <FeaturedStudent /> : <FeaturedTeacher />}
 
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart title="Last 6 Months Activity" aspect={2 / 1} />
         </div>
       </div>
     </div>
