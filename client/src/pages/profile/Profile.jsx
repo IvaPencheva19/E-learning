@@ -1,11 +1,29 @@
 import "./profile.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import EditProfileDialog from "../../components/profile/editDialog/EditProfileDialog";
 
 const Single = () => {
   const { user } = useContext(AuthContext);
+
+  const [editProfile, setEditProfile] = useState(false);
+
+  const editProfileClickHandler = (e) => {
+    console.log('clicked');
+    setEditProfile(true);
+  }
+
+  const closeHandler = () => {
+    setEditProfile(false);
+  }
+
+  const onUserEditHandler = () => {
+    console.log('edit');
+    closeHandler();
+  }
+
   return (
     <div className="single">
       <Sidebar />
@@ -13,7 +31,7 @@ const Single = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <div className="editButton" onClick={editProfileClickHandler}> Edit </div>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -37,6 +55,16 @@ const Single = () => {
                     {user.role}
                   </span>
                 </div>
+
+                {editProfile &&
+                  <EditProfileDialog
+                    user={user}
+                    openDialog={editProfile}
+                    onClose={closeHandler}
+                    onSave={onUserEditHandler}
+                  />
+                }
+                
               </div>
             </div>
           </div>
