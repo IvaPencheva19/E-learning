@@ -11,7 +11,7 @@ import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { ValidatorForm } from "react-material-ui-form-validator";
-import { minLengthValidator, emailValidator } from "../../../utils/validators";
+import { minLengthValidator, emailValidator, urlValidator } from "../../../utils/validators";
 
 const EditProfileDialog = ({
     user,
@@ -34,13 +34,11 @@ const EditProfileDialog = ({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { ...userData } = values;
-        userData._id = user._id;
-        onSave(userData);
+        const { ...profileData } = values;
+        onSave(profileData);
     }
 
     const changeHandler = (e) => {
-        console.log(errors);
         setErrors((errors) => ({
             ...errors,
             serverMsg: "",
@@ -62,6 +60,7 @@ const EditProfileDialog = ({
                             <DialogContentText></DialogContentText>
 
                             <TextField
+                                required
                                 autoFocus
                                 margin="dense"
                                 id="firstName"
@@ -78,9 +77,9 @@ const EditProfileDialog = ({
                                     errors.firstName ? "First name must be at least 2 characters" : ""
                                 }
                             />
-
                             <TextField
                                 autoFocus
+                                required
                                 margin="dense"
                                 id="lastName"
                                 label="Last Name"
@@ -96,7 +95,6 @@ const EditProfileDialog = ({
                                     errors.lastName ? "Last name must be at least 2 characters" : ""
                                 }
                             />
-
                             <TextField
                                 color="secondary"
                                 margin="normal"
@@ -114,7 +112,6 @@ const EditProfileDialog = ({
                                 error={errors.email ? true : false}
                                 helperText={errors.email ? "Email is not valid!" : ""}
                             />
-
                             <TextField
                                 color="secondary"
                                 margin="normal"
@@ -126,6 +123,10 @@ const EditProfileDialog = ({
                                 autoComplete="text"
                                 value={values.imageUrl}
                                 onChange={changeHandler}
+                                onKeyUp={(e) => urlValidator(e, setErrors)}
+                                onBlur={(e) => urlValidator(e, setErrors)}
+                                error={errors.imageUrl ? true : false}
+                                helperText={errors.imageUrl ? "The image url is not valid!" : ""}
                             />
 
                         </DialogContent>

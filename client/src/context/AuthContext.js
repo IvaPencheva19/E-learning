@@ -30,6 +30,7 @@ export const AuthProvider = ({
     return (
         <AuthContext.Provider value={{
             user,
+            setUser,
             userLogin,
             userLogout,
             isAuthenticated: Boolean(Object.keys(user).length > 0),

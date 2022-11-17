@@ -8,12 +8,30 @@ function formatDate(date) {
     padTo2Digits(date.getDate()),
   ].join("-");
 }
-
 function isDateBeforeToday(date) {
   return new Date(date.toDateString()) < new Date(new Date().toDateString());
 }
 function isToday(date) {
   return formatDate(date) === formatDate(new Date());
+}
+
+export const urlValidator = (e, setErrors) => {
+  let string = e.target.value;
+  let url;
+  try {
+    url = new URL(string);
+
+    setErrors((state) => ({
+      ...state,
+      [e.target.name]: url.protocol !== "http:" && url.protocol !== "https:",
+    }));
+
+  } catch (_) {
+    setErrors((state) => ({
+      ...state,
+      [e.target.name]: true,
+    }));
+  }
 }
 
 export const emailValidator = (e, setErrors) => {

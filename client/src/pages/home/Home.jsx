@@ -31,7 +31,7 @@ const Home = () => {
         console.error(err);
       });
   }, []);
-  console.log(courses);
+
   if (courses.length > 4) {
     setCourses(courses.slice(0, 4));
   }

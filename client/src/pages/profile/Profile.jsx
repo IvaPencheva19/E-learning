@@ -1,17 +1,21 @@
 import "./profile.scss";
+import jwt from "jwt-decode";
+
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import EditProfileDialog from "../../components/profile/editDialog/EditProfileDialog";
+import * as userService from "../../services/userService";
+
+import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 
 const Single = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [editProfile, setEditProfile] = useState(false);
 
   const editProfileClickHandler = (e) => {
-    console.log('clicked');
     setEditProfile(true);
   }
 
@@ -19,9 +23,21 @@ const Single = () => {
     setEditProfile(false);
   }
 
-  const onUserEditHandler = () => {
-    console.log('edit');
-    closeHandler();
+  const onUserEditHandler = (profileData) => {
+    
+    userService.updateProfile(profileData)
+      .then(result => {
+
+        const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
+        user[SERVER_AUTHORIZATION_HEADER_NAME] =
+          result[SERVER_AUTHORIZATION_HEADER_NAME];
+
+        setUser(user);
+        closeHandler();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (
@@ -64,7 +80,7 @@ const Single = () => {
                     onSave={onUserEditHandler}
                   />
                 }
-                
+
               </div>
             </div>
           </div>

@@ -9,7 +9,6 @@ router.post("/login", isGuest, async (req, res) => {
 
   try {
     const user = await authService.login(email, password);
-
     const jwUserToken = await authService.createUserToken(user);
 
     return res.status(200).json({ [TOKEN_NAME]: jwUserToken });

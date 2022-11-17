@@ -1,6 +1,5 @@
 import "./login.scss";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import jwt from "jwt-decode";
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
@@ -23,7 +22,6 @@ import { theme } from "../../utils/theme";
 import { emailValidator, minLengthValidator } from "../../utils/validators";
 import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
-import { CoPresentOutlined } from "@mui/icons-material";
 
 function Copyright(props) {
   return (
@@ -72,6 +70,7 @@ const Login = () => {
         const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
         user[SERVER_AUTHORIZATION_HEADER_NAME] =
           result[SERVER_AUTHORIZATION_HEADER_NAME];
+        console.log(user);
         userLogin(user);
       })
       .catch((err) => {
