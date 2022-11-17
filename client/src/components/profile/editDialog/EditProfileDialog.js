@@ -35,9 +35,8 @@ const EditProfileDialog = ({
     const handleSubmit = (e) => {
         e.preventDefault();
         const { ...profileData } = values;
-        onSave(profileData);
+        onSave(profileData, setErrors);
     }
-
     const changeHandler = (e) => {
         setErrors((errors) => ({
             ...errors,
@@ -57,17 +56,20 @@ const EditProfileDialog = ({
                     <DialogTitle>Edit profile</DialogTitle>
                     <ValidatorForm onSubmit={handleSubmit}>
                         <DialogContent>
-                            <DialogContentText></DialogContentText>
+
+                            {errors.serverMsg && (
+                                <p style={{ color: "red", margin: "1em 0" }}>{errors.serverMsg}</p>
+                            )}
 
                             <TextField
+                                id="firstName"
                                 required
                                 autoFocus
+                                fullWidth
                                 margin="dense"
-                                id="firstName"
                                 label="First Name"
                                 name="firstName"
                                 type="text"
-                                fullWidth
                                 color="secondary"
                                 onChange={changeHandler}
                                 value={values.firstName}
@@ -78,10 +80,10 @@ const EditProfileDialog = ({
                                 }
                             />
                             <TextField
+                                id="lastName"
                                 autoFocus
                                 required
                                 margin="dense"
-                                id="lastName"
                                 label="Last Name"
                                 name="lastName"
                                 type="text"
@@ -96,11 +98,11 @@ const EditProfileDialog = ({
                                 }
                             />
                             <TextField
+                                id="email"
                                 color="secondary"
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
@@ -113,11 +115,11 @@ const EditProfileDialog = ({
                                 helperText={errors.email ? "Email is not valid!" : ""}
                             />
                             <TextField
+                                id="imageUrl"
                                 color="secondary"
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="imageUrl"
                                 label="Image url"
                                 name="imageUrl"
                                 autoComplete="text"

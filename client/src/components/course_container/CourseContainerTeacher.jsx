@@ -1,5 +1,4 @@
 import "./course_container.scss";
-import InsightsIcon from "@mui/icons-material/Insights";
 import * as React from "react";
 import Chip from "@mui/material/Chip";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";

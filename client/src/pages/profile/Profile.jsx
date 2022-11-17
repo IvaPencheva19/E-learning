@@ -6,25 +6,30 @@ import Navbar from "../../components/navbar/Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import EditProfileDialog from "../../components/profile/editDialog/EditProfileDialog";
+import ChangePasswordDialog from "../../components/profile/changePassword/ChangePasswordDialog";
 import * as userService from "../../services/userService";
+
 
 import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 
 const Single = () => {
   const { user, setUser } = useContext(AuthContext);
-
   const [editProfile, setEditProfile] = useState(false);
-
-  const editProfileClickHandler = (e) => {
-    setEditProfile(true);
-  }
+  const [changePassword, setChangePassword] = useState(false);
 
   const closeHandler = () => {
     setEditProfile(false);
+    setChangePassword(false);
   }
 
-  const onUserEditHandler = (profileData) => {
-    
+  const editProfileClickHandler = () => {
+    setEditProfile(true);
+  }
+  const changePasswordClickHandler = () => {
+    setChangePassword(true);
+  }
+
+  const onUserEditHandler = (profileData, setErrors) => {
     userService.updateProfile(profileData)
       .then(result => {
 
@@ -36,7 +41,23 @@ const Single = () => {
         closeHandler();
       })
       .catch((err) => {
+        setErrors((errors) => ({
+          ...errors,
+          serverMsg: err.message,
+        }));
+      });
+  }
+  const onChangePasswordHandler = (currentPassword, newPassword, setErrors) => {
+    userService.updatePassword(currentPassword, newPassword)
+      .then(() => {
+        closeHandler();
+      })
+      .catch((err) => {
         console.error(err);
+        setErrors((errors) => ({
+          ...errors,
+          serverMsg: err.message,
+        }));
       });
   }
 
@@ -47,7 +68,10 @@ const Single = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton" onClick={editProfileClickHandler}> Edit </div>
+            <div className="editButtonsContainer" >
+              <button onClick={editProfileClickHandler}>Edit</button>
+              <button onClick={changePasswordClickHandler}>Change Password</button>
+            </div>
             <h1 className="title">Information</h1>
             <div className="item">
               <img
@@ -78,6 +102,14 @@ const Single = () => {
                     openDialog={editProfile}
                     onClose={closeHandler}
                     onSave={onUserEditHandler}
+                  />
+                }
+
+                {changePassword &&
+                  <ChangePasswordDialog
+                    openDialog={changePassword}
+                    onClose={closeHandler}
+                    onSave={onChangePasswordHandler}
                   />
                 }
 

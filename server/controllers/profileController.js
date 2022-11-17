@@ -4,6 +4,9 @@ const userService = require("../services/userService");
 const authService = require("../services/authService");
 const { TOKEN_NAME } = require("../config/constants");
 const { getErrorMessage } = require("../utils/errorHelpers");
+const bcrypt = require("bcrypt");
+const { SALT_ROUNDS } = require("../config/env");
+
 
 router.patch("/", isAuth, async (req, res) => {
     const {
@@ -31,8 +34,31 @@ router.patch("/", isAuth, async (req, res) => {
     }
 });
 
-router.post("/changePassword", isAuth, async (req, res) => {
-    // TODO
+router.patch("/password", isAuth, async (req, res) => {
+    const { password, newPassword } = req.body;
+    try {
+        const user = await userService.findById(req.user._id);
+
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+            throw {
+                message: `Wrong password!`,
+            };
+        }
+
+        bcrypt.hash(newPassword, SALT_ROUNDS)
+            .then(async (hashedPassword) => {
+                user.password = hashedPassword;
+                await userService.update(user);
+                return res.status(200).json('success');
+            })
+            .catch((err) => console.log(err));
+
+
+    } catch (error) {
+        // mongoose error
+        return res.status(400).send({ error: getErrorMessage(error) });
+    }
 });
 
 module.exports = router;

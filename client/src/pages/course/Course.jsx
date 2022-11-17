@@ -7,6 +7,7 @@ import CourseContainerTeacher from "../../components/course_container/CourseCont
 import CourseContainerStudent from "../../components/course_container/CourseContainerStudent";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+
 const Home = () => {
   let { user } = useContext(AuthContext);
   const [course, setCourse] = useState([]);
