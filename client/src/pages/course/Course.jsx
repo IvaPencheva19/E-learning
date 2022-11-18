@@ -30,11 +30,11 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div>
-          {user.role == "Teacher" ? (
+          {(course.length != 0) && (user.role == "Teacher" ? (
             <CourseContainerTeacher course={course} />
           ) : (
             <CourseContainerStudent course={course} />
-          )}
+          ))}
         </div>
       </div>
     </div>

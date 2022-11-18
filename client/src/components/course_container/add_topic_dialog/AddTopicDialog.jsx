@@ -9,8 +9,8 @@ import TextField from "@mui/material/TextField";
 import "./add_topic_dialog.scss";
 import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { useContext, useState } from "react";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useState } from "react";
+import { ValidatorForm } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
 function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
@@ -18,6 +18,7 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
     name: "Topic",
     materials: [],
   });
+
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
@@ -25,12 +26,15 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
     }));
     console.log(values.name);
   };
+
   const handleClose = () => {
     setOpenDialog(false);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const { name, materials } = values;
+
     topicService
       .addTopic(courseId, name, materials)
       .then((result) => {

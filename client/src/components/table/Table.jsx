@@ -40,7 +40,6 @@ const List = ({ courseId }) => {
       .getCourseMembers(courseId)
       .then((result) => {
         setStudents((oldState) => result);
-        console.log(result);
       })
       .catch((err) => {
         console.error(err);
@@ -53,7 +52,6 @@ const List = ({ courseId }) => {
       .getCourseMembers(courseId)
       .then((result) => {
         setStudents((oldState) => result);
-        console.log(result);
         setReload(false);
       })
       .catch((err) => {

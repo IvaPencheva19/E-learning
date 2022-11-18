@@ -3,7 +3,6 @@ const { isAuth } = require("../middlewares/authMiddleware");
 const topicService = require("../services/topicService");
 const courseService = require("../services/courseService");
 const { getErrorMessage } = require("../utils/errorHelpers");
-const ObjectID = require("mongodb").ObjectId;
 
 router.post("/", isAuth, async (req, res) => {
   const { courseId, name, materials } = req.body;
@@ -21,26 +20,22 @@ router.post("/", isAuth, async (req, res) => {
     return res.status(400).send({ error: getErrorMessage(error) });
   }
 });
-module.exports = router;
 
 router.post("/getAll", isAuth, async (req, res) => {
+
   try {
     const { id } = req.body;
+    console.log(id);
 
     const course = await courseService.findById(id);
 
-    const allTopics = await Promise.all(
-      course.topics.map(async (element) => {
-        return await topicService.findById(element);
-      })
-    );
-
-    return res.status(201).json(allTopics);
+    return res.status(201).json(course.topics);
   } catch (error) {
     // mongoose error
-
+    console.log(getErrorMessage(error));
     return res.status(400).send({ error: getErrorMessage(error) });
   }
+
 });
 
 router.post("/remove", isAuth, async (req, res) => {
@@ -86,12 +81,13 @@ router.post("/addMaterial", isAuth, async (req, res) => {
   try {
     const { idTopic, addMaterial } = req.body;
     const topic = await topicService.findById(idTopic);
+
     topic.materials.push(addMaterial);
     await topicService.update(topic);
+
     return res.status(201).json(topic);
   } catch (error) {
     // mongoose error
-
     return res.status(400).send({ error: getErrorMessage(error) });
   }
 });
@@ -110,3 +106,5 @@ router.post("/edit", isAuth, async (req, res) => {
     return res.status(400).send({ error: getErrorMessage(error) });
   }
 });
+
+module.exports = router;

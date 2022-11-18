@@ -9,15 +9,16 @@ import TextField from "@mui/material/TextField";
 
 import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { useContext, useState } from "react";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useState } from "react";
+import { ValidatorForm } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
 function AddMaterialDialog({
   openDialogAddMaterial,
   setOpenDialogAddMaterial,
   setReload,
-  idTopic,
+  topic,
+  setTopics
 }) {
   const [values, setValues] = useState({
     material: "",
@@ -29,19 +30,27 @@ function AddMaterialDialog({
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleClose = () => {
     setOpenDialogAddMaterial(false);
+    setValues({ material: "" });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
     topicService
-      .addMaterial(idTopic, values.material)
+      .addMaterial(topic._id, values.material)
       .then((result) => {
-        setReload(true);
+        setValues({ material: "" });
+        setTopics((oldState) => {
+          return oldState.map(x => x._id == result._id ? result : x);
+        });
       })
-      .catch((err) => {});
+      .catch((err) => { });
     setOpenDialogAddMaterial(false);
   };
+  
   return (
     <ThemeProvider theme={theme}>
       <div className="dialog">
@@ -64,6 +73,7 @@ function AddMaterialDialog({
                 onChange={changeHandler}
                 value={values.material}
               />
+
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
