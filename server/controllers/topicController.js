@@ -22,10 +22,8 @@ router.post("/", isAuth, async (req, res) => {
 });
 
 router.post("/getAll", isAuth, async (req, res) => {
-
   try {
     const { id } = req.body;
-    console.log(id);
 
     const course = await courseService.findById(id);
 
@@ -35,7 +33,6 @@ router.post("/getAll", isAuth, async (req, res) => {
     console.log(getErrorMessage(error));
     return res.status(400).send({ error: getErrorMessage(error) });
   }
-
 });
 
 router.post("/remove", isAuth, async (req, res) => {

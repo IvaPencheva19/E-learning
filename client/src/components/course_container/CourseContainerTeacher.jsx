@@ -27,49 +27,37 @@ const CourseContainerTeacher = ({ course }) => {
   const handleViewMemebers = () => {
     navigate(`/course/${course._id}/members`);
   };
+  const handleEditCourse = () => {
+    setOpenDialogEditCourse(true);
+  };
 
   const handleAddQuiz = () => {
     navigate(`/course/${course._id}/addQuiz`);
   };
 
-  const handleEditCourse = () => {
-    setOpenDialogEditCourse(true);
-  };
-
-  const [topics, setTopics] = useState([]);
   let i = 1;
+  const [topics, setTopics] = useState([]);
   const [startDate, setStartDate] = useState();
   const [finalDate, setFinalDate] = useState();
 
   const sliceDates = async () => {
-    setStartDate(await course.startDate.toString().slice(0, 10));
-    setFinalDate(await course.finalDate.toString().slice(0, 10));
+    setStartDate(await course.startDate?.toString().slice(0, 10));
+    setFinalDate(await course.finalDate?.toString().slice(0, 10));
   };
 
   useEffect(() => {
     sliceDates();
+
     topicService
       .getTopics(course._id)
       .then((result) => {
         setTopics((oldState) => [...result]);
-        console.log(result);
       })
       .catch((err) => {
         console.error(err);
       });
   }, [course]);
 
-  useEffect(() => {
-    topicService
-      .getTopics(course._id)
-      .then((result) => {
-        setTopics((oldState) => [...result]);
-        setReload(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [reload]);
   return (
     <ThemeProvider theme={theme}>
       <div className="course">
@@ -118,7 +106,6 @@ const CourseContainerTeacher = ({ course }) => {
           <EditIcon sx={{}} onClick={handleEditCourse} />
         </div>
       </div>
-
       <div className="addButtons">
         <Button
           className="addQuiz"
@@ -139,7 +126,6 @@ const CourseContainerTeacher = ({ course }) => {
           Add Topic
         </Button>
       </div>
-
       <div className="accordion">
         {topics.length > 0 ? (
           topics.map((x) => (
@@ -148,6 +134,7 @@ const CourseContainerTeacher = ({ course }) => {
               topic={x}
               num={i++}
               idCourse={course._id}
+              setTopics={setTopics}
             />
           ))
         ) : (
