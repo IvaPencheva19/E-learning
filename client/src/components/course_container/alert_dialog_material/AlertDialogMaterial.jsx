@@ -7,18 +7,22 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import * as topicService from "../../../services/topicService";
 
-function AlertDialogMaterial({
+const DeleteMaterialDialog = ({
   openAlertDialogMaterial,
   setOpenAlertDialogMaterial,
   setReload,
   idTopic,
   deleteMaterial,
-}) {
+  setTopics
+}) => {
+
   const handleAgreeClose = () => {
     topicService
       .deleteMaterial(idTopic, deleteMaterial)
       .then((result) => {
-        console.log(result);
+        setTopics((oldState) => {
+          return oldState.map(x => x._id == result._id ? result : x);
+        });
         setReload(true);
       })
       .catch((err) => {
@@ -27,9 +31,10 @@ function AlertDialogMaterial({
 
     setOpenAlertDialogMaterial(false);
   };
+
   const handleDisagreeClose = () => {
-    console.log("close");
     setOpenAlertDialogMaterial(false);
+
   };
 
   return (
@@ -57,4 +62,4 @@ function AlertDialogMaterial({
   );
 }
 
-export default AlertDialogMaterial;
+export default DeleteMaterialDialog;

@@ -1,9 +1,12 @@
 import * as request from "./utils/requester";
 
 const baseUrl = "http://localhost:3000/topic";
+
 export const getTopics = (id) => request.post(`${baseUrl}/getAll`, { id: id });
+
 export const addTopic = (courseId, name, materials) =>
   request.post(`${baseUrl}/`, { courseId, name, materials });
+
 export const removeTopic = (idTopic, idCourse) =>
   request.post(`${baseUrl}/remove`, { idTopic: idTopic, idCourse: idCourse });
 

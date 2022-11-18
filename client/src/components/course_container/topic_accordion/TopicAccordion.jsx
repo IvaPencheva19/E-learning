@@ -7,23 +7,25 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import "./topic_accordion.scss";
-import AlertDialog from "../alert_dialog/AlertDialog";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import DeleteTopicDialog from "../alert_dialog/AlertDialog";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import AlertDialogMaterial from "../alert_dialog_material/AlertDialogMaterial";
 import AddMaterialDialog from "../add_material_dialog/AddMaterialDialog";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import EditTopicDialog from "../edit_topic_dialog/EditTopicDialog";
+import DeleteMaterialDialog from "../alert_dialog_material/AlertDialogMaterial";
 
-function TopicAccordion({ num, topic, idCourse }) {
+function TopicAccordion({
+  num,
+  topic,
+  idCourse,
+  setTopics
+}) {
   const [expanded, setExpanded] = React.useState(false);
   const [reload, setReload] = useState(false);
 
@@ -41,16 +43,20 @@ function TopicAccordion({ num, topic, idCourse }) {
   const handleClickRemove = () => {
     setOpenAlertDialog(true);
   };
+
   const handleClickRemoveMaterial = (e) => {
     setOpenAlertDialogMaterial(true);
     setDeleteMaterial(e.target.id);
   };
+
   const handleClickAddMaterial = (e) => {
     setOpenDialogAddMaterial(true);
   };
+
   const handleClickEditTopic = (e) => {
     setOpenDialogEditTopic(true);
   };
+
   return (
     <div>
       <Accordion
@@ -68,7 +74,9 @@ function TopicAccordion({ num, topic, idCourse }) {
           <Typography sx={{ color: "text.secondary", width: "73%" }}>
             {topic.name}
           </Typography>
+
         </AccordionSummary>
+
         <AccordionDetails>
           {" "}
           {topic.materials.length > 0 ? (
@@ -84,6 +92,7 @@ function TopicAccordion({ num, topic, idCourse }) {
                         </a>
                       </TableCell>
                       <TableCell className="tableCell">
+
                         <Button
                           className="deleteMaterialButton"
                           variant="contained"
@@ -95,6 +104,7 @@ function TopicAccordion({ num, topic, idCourse }) {
                         >
                           Delete
                         </Button>
+
                       </TableCell>
                     </TableRow>
                   ))}
@@ -143,26 +153,32 @@ function TopicAccordion({ num, topic, idCourse }) {
           </div>
         </AccordionDetails>
       </Accordion>
-      <AlertDialog
+
+      <DeleteTopicDialog
         openAlertDialog={openAlertDialog}
         setOpenAlertDialog={setOpenAlertDialog}
         setReload={setReload}
         idTopic={topic._id}
         idCourse={idCourse}
       />
-      <AlertDialogMaterial
+
+      <DeleteMaterialDialog
         openAlertDialogMaterial={openAlertDialogMaterial}
         setOpenAlertDialogMaterial={setOpenAlertDialogMaterial}
         setReload={setReload}
         idTopic={topic._id}
         deleteMaterial={deleteMaterial}
+        setTopics={setTopics}
       />
+
       <AddMaterialDialog
         openDialogAddMaterial={openDialogAddMaterial}
         setOpenDialogAddMaterial={setOpenDialogAddMaterial}
         setReload={setReload}
-        idTopic={topic._id}
+        topic={topic}
+        setTopics={setTopics}
       />
+
       <EditTopicDialog
         openDialogEditTopic={openDialogEditTopic}
         setOpenDialogEditTopic={setOpenDialogEditTopic}
@@ -170,6 +186,7 @@ function TopicAccordion({ num, topic, idCourse }) {
         idTopic={topic._id}
         nameTopic={topic.name}
       />
+
     </div>
   );
 }

@@ -9,8 +9,8 @@ import TextField from "@mui/material/TextField";
 
 import { theme } from "../../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { useContext, useState } from "react";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useState } from "react";
+import { ValidatorForm } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
 function EditTopicDialog({
@@ -41,7 +41,7 @@ function EditTopicDialog({
         console.log(result);
         setReload(true);
       })
-      .catch((err) => {});
+      .catch((err) => { });
     console.log(idTopic);
     setOpenDialogEditTopic(false);
   };

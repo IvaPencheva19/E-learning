@@ -7,15 +7,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import * as topicService from "../../../services/topicService";
 
-function AlertDialog({
+const DeleteTopicDialog = ({
   openAlertDialog,
   setOpenAlertDialog,
   setReload,
   idTopic,
   idCourse,
-}) {
+}) => {
   const handleAgreeClose = () => {
-    // setAlertAnswer(true);
     topicService
       .removeTopic(idTopic, idCourse)
       .then((result) => {
@@ -56,4 +55,4 @@ function AlertDialog({
   );
 }
 
-export default AlertDialog;
+export default DeleteTopicDialog;
