@@ -15,6 +15,7 @@ import { PublicRoute } from "./components/common/PublicRoute";
 import { TeacherRoute } from "./components/common/TeacherRoute";
 import { StudentRoute } from "./components/common/StudentRoute";
 import ViewMembers from "./pages/view_members/ViewMembers";
+import AddQuiz from "./pages/add_quiz/AddQuiz";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
               <Route path="/course" element={<AllCourses />} />
               <Route path="/course/:id" element={<Course />} />
               <Route path="/course/:id/members" element={<ViewMembers />} />
+              <Route path="/course/:id/addQuiz" element={<AddQuiz />} />
             </Route>
           </Routes>
         </AuthProvider>

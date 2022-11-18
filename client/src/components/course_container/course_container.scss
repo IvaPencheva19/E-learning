@@ -47,11 +47,21 @@ margin-right: 2%;
 }
 .addTopic {
   margin-top: 2%!important;
-  margin-left: 87%!important;
+
   margin-bottom: -1%!important;
   background-color: #daffb3!important;
     border-radius: 20px !important;
       box-shadow: none !important;
+
+}
+.addQuiz {
+  margin-top: 2% !important;
+
+  margin-bottom: -1% !important;
+  background-color: #daffb3 !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  color: white !important;;
 
 }
 
@@ -92,4 +102,11 @@ font-weight: bold;
       font-size: 20px;
       border-bottom: 1px solid gray;
       text-decoration: none;
+    }
+
+    .addButtons  {
+      display: flex;
+      justify-content:end ;
+      margin-right: 5%;
+      gap:0.5em;
     }

@@ -28,6 +28,10 @@ const CourseContainerTeacher = ({ course }) => {
     navigate(`/course/${course._id}/members`);
   };
 
+  const handleAddQuiz = () => {
+    navigate(`/course/${course._id}/addQuiz`);
+  };
+
   const handleEditCourse = () => {
     setOpenDialogEditCourse(true);
   };
@@ -114,15 +118,28 @@ const CourseContainerTeacher = ({ course }) => {
           <EditIcon sx={{}} onClick={handleEditCourse} />
         </div>
       </div>
-      <Button
-        className="addTopic"
-        variant="contained"
-        startIcon={<AddCircleOutlineIcon />}
-        onClick={handleClickOpen}
-        sx={{ textTransform: "none" }}
-      >
-        Add Topic
-      </Button>
+
+      <div className="addButtons">
+        <Button
+          className="addQuiz"
+          variant="contained"
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={handleAddQuiz}
+          sx={{ textTransform: "none" }}
+        >
+          Add Quiz
+        </Button>
+        <Button
+          className="addTopic"
+          variant="contained"
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={handleClickOpen}
+          sx={{ textTransform: "none" }}
+        >
+          Add Topic
+        </Button>
+      </div>
+
       <div className="accordion">
         {topics.length > 0 ? (
           topics.map((x) => (
