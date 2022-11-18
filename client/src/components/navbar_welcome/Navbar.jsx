@@ -37,6 +37,13 @@ const Navbar = () => {
           sx={{
             color: "white",
           }}
+          onClick={() => navigate("/home")}>
+          Home
+        </Button>
+        <Button variant="contained"
+          sx={{
+            color: "white",
+          }}
           onClick={userLogout}>
           Logout
         </Button>
