@@ -19,6 +19,7 @@ function EditTopicDialog({
   setReload,
   idTopic,
   nameTopic,
+  setTopics
 }) {
   const [values, setValues] = useState({
     name: nameTopic,
@@ -32,17 +33,21 @@ function EditTopicDialog({
   };
   const handleClose = () => {
     setOpenDialogEditTopic(false);
+    values.name = nameTopic;
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
     topicService
       .editTopic(idTopic, values.name)
       .then((result) => {
-        console.log(result);
-        setReload(true);
+        setTopics((oldState) => {
+          return oldState.map(x => x._id == result._id ? result : x);
+        });
       })
       .catch((err) => { });
-    console.log(idTopic);
+    values.name = nameTopic;
     setOpenDialogEditTopic(false);
   };
   return (

@@ -160,6 +160,7 @@ function TopicAccordion({
         setReload={setReload}
         idTopic={topic._id}
         idCourse={idCourse}
+        setTopics={setTopics}
       />
 
       <DeleteMaterialDialog
@@ -185,6 +186,7 @@ function TopicAccordion({
         setReload={setReload}
         idTopic={topic._id}
         nameTopic={topic.name}
+        setTopics={setTopics}
       />
 
     </div>

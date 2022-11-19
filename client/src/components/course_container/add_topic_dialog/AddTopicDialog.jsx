@@ -13,9 +13,14 @@ import { useState } from "react";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import * as topicService from "../../../services/topicService";
 
-function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
+function AddTopicDialog({ openDialog,
+  setOpenDialog,
+  courseId,
+  setReload,
+  setTopics
+}) {
   const [values, setValues] = useState({
-    name: "Topic",
+    name: "",
     materials: [],
   });
 
@@ -24,11 +29,11 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
       ...state,
       [e.target.name]: e.target.value,
     }));
-    console.log(values.name);
   };
 
   const handleClose = () => {
     setOpenDialog(false);
+    values.name = '';
   };
 
   const handleSubmit = (event) => {
@@ -38,13 +43,16 @@ function AddTopicDialog({ openDialog, setOpenDialog, courseId, setReload }) {
     topicService
       .addTopic(courseId, name, materials)
       .then((result) => {
-        setReload(true);
+        setTopics((oldState) => [...oldState, result]);
       })
       .catch((err) => {
         console.error(err);
       });
+
+    values.name = '';
     setOpenDialog(false);
   };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="dialog">

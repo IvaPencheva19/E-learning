@@ -13,13 +13,14 @@ const DeleteTopicDialog = ({
   setReload,
   idTopic,
   idCourse,
+  setTopics
 }) => {
   const handleAgreeClose = () => {
     topicService
       .removeTopic(idTopic, idCourse)
       .then((result) => {
-        console.log(result);
-        setReload(true);
+        const topics = result.topics;
+        setTopics((oldState) => [...topics]);
       })
       .catch((err) => {
         console.error(err);
