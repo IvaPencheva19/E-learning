@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const courseSchema = new mongoose.Schema({
-  name: {
+const quizSchema = new mongoose.Schema({
+  title: {
     type: String,
-    required: [true, "Name is required"],
+    required: [true, "Title is required"],
   },
   questions: [
     {
@@ -16,12 +16,12 @@ const courseSchema = new mongoose.Schema({
     required: [true, "Start date is required"],
     min: Date.now() - 24 * 60 * 60 * 1000,
   },
-  finalTime: {
+  endTime: {
     type: Date,
     required: [true, "Final date is required"],
   },
 });
 
-const Quiz = mongoose.model("Quiz", courseSchema);
+const Quiz = mongoose.model("Quiz", quizSchema);
 
 module.exports = Quiz;

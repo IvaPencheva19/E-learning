@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const courseSchema = new mongoose.Schema({
-  name: {
+const questionSchema = new mongoose.Schema({
+  title: {
     type: String,
-    required: [true, "Name is required"],
+    required: [true, "Title is required"],
   },
   answers: [
     {
@@ -13,6 +13,6 @@ const courseSchema = new mongoose.Schema({
   ],
 });
 
-const Question = mongoose.model("Question", courseSchema);
+const Question = mongoose.model("Question", questionSchema);
 
 module.exports = Question;

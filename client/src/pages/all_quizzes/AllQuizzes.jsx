@@ -1,7 +1,7 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./add_quiz.scss";
-import AddQuiz from "../../components/add_quiz/AddQuiz";
+import AllQuizzes from "../../components/all_quizzes/AllQuizzes";
 import React, { useState } from "react";
 
 const AddQuizPage = () => {
@@ -10,7 +10,7 @@ const AddQuizPage = () => {
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        <AddQuiz />
+        <AllQuizzes />
       </div>
     </div>
   );

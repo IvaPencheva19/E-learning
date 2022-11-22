@@ -25,14 +25,13 @@ export const urlValidator = (e, setErrors) => {
       ...state,
       [e.target.name]: url.protocol !== "http:" && url.protocol !== "https:",
     }));
-
   } catch (_) {
     setErrors((state) => ({
       ...state,
       [e.target.name]: true,
     }));
   }
-}
+};
 
 export const emailValidator = (e, setErrors) => {
   let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
