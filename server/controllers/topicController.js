@@ -14,7 +14,7 @@ router.post("/", isAuth, async (req, res) => {
     course.topics.push(topic);
     await courseService.update(course);
 
-    return res.status(201).json(course);
+    return res.status(201).json(topic);
   } catch (error) {
     // mongoose error
     return res.status(400).send({ error: getErrorMessage(error) });

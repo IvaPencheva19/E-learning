@@ -145,6 +145,7 @@ const CourseContainerTeacher = ({ course }) => {
           setOpenDialog={setOpenDialog}
           courseId={course._id}
           setReload={setReload}
+          setTopics={setTopics}
         />
         <EditCourseDialog
           openDialogEditCourse={openDialogEditCourse}

@@ -9,4 +9,4 @@ exports.getAllStudent = (id) =>
   Course.find({ students: new ObjectID(id) }).lean();
 
 exports.update = (course) =>
-  Course.updateOne({ _id: course._id }, { $set: course });
+  Course.updateOne({ _id: course._id }, { $set: course }).populate({ path: 'topics' });

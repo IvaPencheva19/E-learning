@@ -1,6 +1,9 @@
 .single {
   display: flex;
   width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 
   .singleContainer {
     flex: 6;
@@ -87,6 +90,7 @@
       font-size: 16px;
       color: lightgray;
       margin-bottom: 20px;
+      width: 100%;
     }
   }
 }

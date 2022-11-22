@@ -20,10 +20,8 @@ const DeleteMaterialDialog = ({
     topicService
       .deleteMaterial(idTopic, deleteMaterial)
       .then((result) => {
-        setTopics((oldState) => {
-          return oldState.map(x => x._id == result._id ? result : x);
-        });
-        setReload(true);
+        const topics = result.topics;
+        setTopics((oldState) => [topics]);
       })
       .catch((err) => {
         console.error(err);
