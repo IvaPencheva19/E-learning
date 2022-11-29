@@ -10,6 +10,7 @@ const FeaturedStudent = () => {
         <h1 className="title">Summary</h1>
         <MoreVertIcon fontSize="small" />
       </div>
+      
       <div className="bottom">
         <div className="featuredChart">
           <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />

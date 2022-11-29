@@ -6,12 +6,15 @@ const Widget = ({ course }) => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">Course name: {course.name}</span>
-        <span className="counter">Info: {course.description}</span>
+        <span className="title">{course.name}</span>
+        <span className="counter">{course.description}</span>
 
-        <Link className="link" to={`/course/${course._id}`}>
-          Go to course
+        <Link
+          className="CourseDetailLink"
+          to={`/course/${course._id}`}>
+          Details
         </Link>
+        
       </div>
       <div className="right">
         <div className="percentage positive">

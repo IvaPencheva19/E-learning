@@ -8,6 +8,7 @@
         220, 0.47);
   padding: 10px;
   border-radius: 10px;
+  max-width: 25em;
 
   .top {
     display: flex;
@@ -35,6 +36,7 @@
       color: gray;
       display: flex;
       justify-content: space-between;
+      max-width: 10em;
     }
 
     .amount {
