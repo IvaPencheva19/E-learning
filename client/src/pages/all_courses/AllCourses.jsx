@@ -8,6 +8,7 @@ import {
   LOCAL_STORAGE_KEY,
   SERVER_AUTHORIZATION_HEADER_NAME,
 } from "../../config/constants";
+
 const Home = () => {
   const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
 
@@ -33,20 +34,13 @@ const Home = () => {
 
         {courses.length > 0 ? (
           courses.map((x) => (
-            <div className="widgets" key={x._id}>
+            <div className="courseWidgets" key={x._id}>
               <Widget key={x._id} course={x} />{" "}
             </div>
           ))
         ) : (
           <p>No current courses available!</p>
         )}
-
-        <div className="widgets">
-          {/* <Widget /> */}
-          {/* <Widget /> */}
-          {/* <Widget /> */}
-          {/* <Widget /> */}
-        </div>
       </div>
     </div>
   );

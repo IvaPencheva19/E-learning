@@ -14,13 +14,13 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
+import Button from "@mui/material/Button";
 import { AuthContext } from "../../context/AuthContext";
 
-
 const Sidebar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogout } = useContext(AuthContext);
 
-  if (user.role === 'Teacher') {
+  if (user.role === "Teacher") {
     return (
       <div className="sidebar">
         <div className="top">
@@ -40,10 +40,7 @@ const Sidebar = () => {
               </li>
             </Link>
             <p className="title">COURSERS</p>
-            <Link
-              to="/course"
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/course" style={{ textDecoration: "none" }}>
               <li>
                 <LibraryBooksIcon className="icon" />
                 <span>My courses</span>
@@ -64,6 +61,7 @@ const Sidebar = () => {
               <QuizIcon className="icon" />
               <span>Pending quizzes</span>
             </li>
+
             <li>
               <FactCheckIcon className="icon" />
               <span>Results</span>
@@ -80,17 +78,19 @@ const Sidebar = () => {
             </li>
 
             <p className="title">USER</p>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-            <li>
+            <Link to="/profile" style={{ textDecoration: "none" }}>
+              <li>
+                <AccountCircleOutlinedIcon className="icon" />
+                <span>Profile</span>
+              </li>
+            </Link>
+            <li onClick={userLogout}>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>
             </li>
           </ul>
         </div>
-      </div >
+      </div>
     );
   } else {
     return (
@@ -124,14 +124,18 @@ const Sidebar = () => {
                 <span>Find course</span>
               </li>
             </Link>
-            <li>
-              <QuizIcon className="icon" />
-              <span>Pending quizzes</span>
-            </li>
-            <li>
-              <FactCheckIcon className="icon" />
-              <span>Results</span>
-            </li>
+            <Link to="/allQuizzes" style={{ textDecoration: "none" }}>
+              <li>
+                <QuizIcon className="icon" />
+                <span>Pending quizzes</span>
+              </li>
+            </Link>
+            <Link to="/allResults" style={{ textDecoration: "none" }}>
+              <li>
+                <FactCheckIcon className="icon" />
+                <span>Results</span>
+              </li>
+            </Link>
 
             <p className="title">USEFUL</p>
             <li>
@@ -144,21 +148,21 @@ const Sidebar = () => {
             </li>
 
             <p className="title">USER</p>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-            <li>
+            <Link to="/profile" style={{ textDecoration: "none" }}>
+              <li>
+                <AccountCircleOutlinedIcon className="icon" />
+                <span>Profile</span>
+              </li>
+            </Link>
+            <li onClick={userLogout}>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>
             </li>
           </ul>
         </div>
-
       </div>
     );
   }
-
 };
 
 export default Sidebar;

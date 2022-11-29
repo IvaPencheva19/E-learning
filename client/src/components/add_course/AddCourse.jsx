@@ -94,7 +94,6 @@ export default function AddCourse() {
         sx={{ height: "100%" }}
         className="gradientContainer"
       >
-        <CssBaseline />
         <Grid item xs={false} sm={4} md={2} sx={{}} />
         <Grid
           item

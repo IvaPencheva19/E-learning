@@ -9,7 +9,6 @@ import EditProfileDialog from "../../components/profile/editDialog/EditProfileDi
 import ChangePasswordDialog from "../../components/profile/changePassword/ChangePasswordDialog";
 import * as userService from "../../services/userService";
 
-
 import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 
 const Single = () => {
@@ -20,19 +19,19 @@ const Single = () => {
   const closeHandler = () => {
     setEditProfile(false);
     setChangePassword(false);
-  }
+  };
 
   const editProfileClickHandler = () => {
     setEditProfile(true);
-  }
+  };
   const changePasswordClickHandler = () => {
     setChangePassword(true);
-  }
+  };
 
   const onUserEditHandler = (profileData, setErrors) => {
-    userService.updateProfile(profileData)
-      .then(result => {
-
+    userService
+      .updateProfile(profileData)
+      .then((result) => {
         const user = jwt(result[SERVER_AUTHORIZATION_HEADER_NAME]);
         user[SERVER_AUTHORIZATION_HEADER_NAME] =
           result[SERVER_AUTHORIZATION_HEADER_NAME];
@@ -46,9 +45,10 @@ const Single = () => {
           serverMsg: err.message,
         }));
       });
-  }
+  };
   const onChangePasswordHandler = (currentPassword, newPassword, setErrors) => {
-    userService.updatePassword(currentPassword, newPassword)
+    userService
+      .updatePassword(currentPassword, newPassword)
       .then(() => {
         closeHandler();
       })
@@ -59,7 +59,7 @@ const Single = () => {
           serverMsg: err.message,
         }));
       });
-  }
+  };
 
   return (
     <div className="single">
@@ -68,51 +68,47 @@ const Single = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButtonsContainer" >
+            <div className="editButtonsContainer">
               <button onClick={editProfileClickHandler}>Edit</button>
-              <button onClick={changePasswordClickHandler}>Change Password</button>
+              <button onClick={changePasswordClickHandler}>
+                Change Password
+              </button>
             </div>
-            <h1 className="title">Information</h1>
+            <h1 className="title">Profile</h1>
             <div className="item">
-              <img
-                src={user.imageUrl}
-                alt=""
-                className="itemImg"
-              />
+              <img src={user.imageUrl} alt="" className="itemImg" />
               <div className="details">
-                <h1 className="itemTitle">{user.firstName} {user.lastName}</h1>
+                <h1 className="itemTitle">
+                  {user.firstName} {user.lastName}
+                </h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">{user.email}</span>
+                  <span className="itemValueEmail">{user.email}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Username:</span>
+                  <span className="itemKey">Username: </span>
                   <span className="itemValue">{user.username}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Role:</span>
-                  <span className="itemValue">
-                    {user.role}
-                  </span>
+                  <span className="itemValue">{user.role}</span>
                 </div>
 
-                {editProfile &&
+                {editProfile && (
                   <EditProfileDialog
                     user={user}
                     openDialog={editProfile}
                     onClose={closeHandler}
                     onSave={onUserEditHandler}
                   />
-                }
+                )}
 
-                {changePassword &&
+                {changePassword && (
                   <ChangePasswordDialog
                     openDialog={changePassword}
                     onClose={closeHandler}
                     onSave={onChangePasswordHandler}
                   />
-                }
-
+                )}
               </div>
             </div>
           </div>

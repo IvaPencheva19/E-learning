@@ -19,6 +19,7 @@
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         padding: 20px;
         position: relative;
+          border-radius: 10px;
 
         .editButtonsContainer {
           position: absolute;
@@ -31,11 +32,12 @@
           button {
             cursor: pointer;
             border: none;
-            margin: 0.25em;
+            margin: 0.5em;
             font-size: 1em;
             padding: 0.5em;
             color: #7451f8;
             background-color: #7551f818;
+              border-radius: 10px;
           }
         }
 
@@ -68,6 +70,7 @@
 
               .itemValue {
                 font-weight: 300;
+                
               }
             }
           }
@@ -93,4 +96,8 @@
       width: 100%;
     }
   }
+}
+.itemValueEmail{
+ font-weight: bold;
+    color: #555;
 }

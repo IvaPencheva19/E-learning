@@ -16,6 +16,9 @@ import { TeacherRoute } from "./components/common/TeacherRoute";
 import { StudentRoute } from "./components/common/StudentRoute";
 import ViewMembers from "./pages/view_members/ViewMembers";
 import AddQuiz from "./pages/add_quiz/AddQuiz";
+import ViewAllQuizzesPage from "./pages/view_all_quizzes/ViewAllQuizzesPage";
+import MakeQuizPage from "./pages/make_quiz/MakeQuizPage";
+import ViewAllResultsStudentPage from "./pages/view_all_results_student/ViewAllResultsStudentPage";
 
 function App() {
   return (
@@ -50,6 +53,12 @@ function App() {
               <Route path="/course/:id" element={<Course />} />
               <Route path="/course/:id/members" element={<ViewMembers />} />
               <Route path="/course/:id/addQuiz" element={<AddQuiz />} />
+              <Route path="/allQuizzes" element={<ViewAllQuizzesPage />} />
+              <Route path="/allQuizzes/:id" element={<MakeQuizPage />} />
+              <Route
+                path="/allResults"
+                element={<ViewAllResultsStudentPage />}
+              />
             </Route>
           </Routes>
         </AuthProvider>

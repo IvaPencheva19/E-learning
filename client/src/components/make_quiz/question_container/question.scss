@@ -1,0 +1,37 @@
+.widgetQuestionStudent {
+display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding: 10px 10px 10px 10px;
+
+    box-shadow: 0px -4px 10px -3px rgba(206,
+            166,
+            220, 0.47);
+    border-radius: 10px;
+   
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    .left,
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+     
+    }
+}
+
+
+.icon {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+.titleQuestion{
+             font-weight: bold;
+            font-size: 18px;
+            color: rgb(160, 160, 160);
+    width: 180%,
+}

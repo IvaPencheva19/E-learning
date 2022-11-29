@@ -101,7 +101,6 @@ export default function AddCourse() {
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100%" }}>
-        <CssBaseline />
         <Grid item xs={false} sm={4} md={2} sx={{}} />
         <Grid item xs={12} sm={8} md={8} elevation={6} className="Form2">
           <Box

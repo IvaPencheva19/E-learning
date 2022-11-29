@@ -1,4 +1,4 @@
-.featured {
+.featuredTeacher {
   flex: 2;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(80,
         49,
@@ -8,20 +8,21 @@
         220, 0.47);
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 2%;
 
-  .top {
+  .topTeacher {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: gray;
 
-    .title {
+    .titleTeacher {
       font-size: 16px;
       font-weight: 500;
     }
   }
 
-  .bottom {
+  .bottomTeacher {
     padding: 70px;
     display: flex;
     flex-direction: column;
@@ -30,16 +31,23 @@
     gap: 2em;
 
   
-    .title {
+    .titleTeacher {
       font-weight: 500;
       color: gray;
       display: flex;
       justify-content: space-between;
     }
 
-    .amount {
+    .amountTeacher {
+      margin-top: -8%;
       color: black;
       font-size: 30px;
     }
   }
+}
+.categoryStat{
+  margin-top: -2%;
+    font-weight: 500;
+      color: gray;
+      font-size: 30px;
 }

@@ -62,7 +62,7 @@ const CourseContainerTeacher = ({ course }) => {
     <ThemeProvider theme={theme}>
       <div className="course">
         <div className="left">
-          <span className="title">
+          <span className="titleCourse">
             {course.name}
             <Chip
               className="subject"
