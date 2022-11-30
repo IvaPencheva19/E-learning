@@ -14,11 +14,10 @@ const Widget = ({ course }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{course.name}</span>
-        <span className="counter">{course.description}</span>
+        <div className="counter">{course.description || "\u00A0"}</div>
 
         <Button className="CourseDetailLink" onClick={courseDetails}>
-          {" "}
-          Details{" "}
+          Details
         </Button>
       </div>
       <div className="right">

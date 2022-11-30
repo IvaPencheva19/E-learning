@@ -4,73 +4,78 @@
   flex: 1;
   padding: 10px;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(80,
-    49,
-    173, 0.47);
+      49,
+      173, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(206,
-    166,
-    220, 0.47);
+      166,
+      220, 0.47);
   border-radius: 10px;
   height: 100%;
   background-color: white;
- 
-
+  min-height: 150px;
+  min-width: 300px;
 }
-  .left,
-  .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(160, 160, 160);
+  margin: 2%;
+  width: 100%;
+}
+
+.counter {
+  font-size: 28px;
+  font-weight: 300;
+  margin-left: 2%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.CourseDetailLink {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  margin: 2% 0% 1% 2%;
+  background-color: #5031ad;
+  border-radius: 20px;
+  box-shadow: none;
+  color: white;
+  width: 20%;
+  max-width: 141.21px;
+}
+
+.percentage {
+  display: flex;
+  font-size: 14px;
+  justify-content: flex-end;
+
+
+  &.positive {
+    color: #5031ad;
   }
 
-    .title {
-      font-weight: bold;
-      font-size: 16px;
-      color: rgb(160, 160, 160);
-      margin: 2%
-    }
+  &.negative {
+    color: red;
+  }
+}
 
-    .counter {
-      font-size: 28px;
-      font-weight: 300;
-      margin-left: 2%;
-      width: 100%;
-    }
+.icon {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
+  align-self: flex-end;
+}
 
-   
-    .CourseDetailLink {
-          margin-top: 2%;
-          margin-bottom: 1%;
-          margin: 2% 0% 1% 2%;
-          background-color: #5031ad ;
-          border-radius: 20px ;
-          box-shadow: none;
-          color: white;
-          width: 20%;
-
-    }
-
-    .percentage {
-      display: flex;
-      font-size: 14px;
-      justify-content: flex-end;
-
-
-      &.positive {
-        color: #5031ad;
-      }
-      &.negative {
-        color: red;
-      }
-    }
-
-    .icon {
-      font-size: 18px;
-      padding: 5px;
-      border-radius: 5px;
-      align-self: flex-end;
-    }
-  
 
 .widgetsContainer {
   background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
