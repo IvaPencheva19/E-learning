@@ -7,7 +7,9 @@
         166,
         220, 0.47);
   padding: 10px;
-border-radius: 10px;
+  border-radius: 10px;
+  max-width: 25em;
+
   .top {
     display: flex;
     align-items: center;
@@ -21,11 +23,12 @@ border-radius: 10px;
   }
 
   .bottom {
-    padding: 90px;
+    padding: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     gap: 15px;
 
     .featuredChart {
@@ -33,17 +36,24 @@ border-radius: 10px;
       height: 130px;
     }
 
+    gap: 2em;
+
+  
     .title {
       font-weight: 500;
       color: gray;
+      display: flex;
+      justify-content: space-between;
+      max-width: 10em;
     }
 
     .amount {
+
       margin-top: 20px;
+
+      color: black;
+
       font-size: 30px;
     }
-
-
-  
   }
 }

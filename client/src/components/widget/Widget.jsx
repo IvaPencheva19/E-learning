@@ -1,17 +1,25 @@
 import "./widget.scss";
-import InsightsIcon from "@mui/icons-material/Insights";
-import { Link } from "react-router-dom";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+
 const Widget = ({ course }) => {
+  const navigate = useNavigate();
+
+  const courseDetails = () => {
+    navigate(`/course/${course._id}`);
+  };
+
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">Course name: {course.name}</span>
-        <span className="counter">Info: {course.description}</span>
+        <span className="title">{course.name}</span>
+        <span className="counter">{course.description}</span>
 
-        <Link className="linkCourse" to={`/course/${course._id}`}>
-          Go to course
-        </Link>
+        <Button className="CourseDetailLink" onClick={courseDetails}>
+          {" "}
+          Details{" "}
+        </Button>
       </div>
       <div className="right">
         <div className="percentage positive">

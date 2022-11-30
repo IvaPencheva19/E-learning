@@ -40,6 +40,7 @@ const Navbar = () => {
           onClick={() => navigate("/home")}>
           Home
         </Button>
+        
         <Button variant="contained"
           sx={{
             color: "white",

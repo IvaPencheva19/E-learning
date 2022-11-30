@@ -12,36 +12,49 @@
   border-radius: 10px;
   height: 100%;
   background-color: white;
+ 
 
+}
   .left,
   .right {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+  }
 
     .title {
       font-weight: bold;
-      font-size: 14px;
+      font-size: 16px;
       color: rgb(160, 160, 160);
+      margin: 2%
     }
 
     .counter {
       font-size: 28px;
       font-weight: 300;
+      margin-left: 2%;
+      width: 100%;
     }
 
-    .linkCourse {
-      width: max-content;
-      font-size: 20px;
-      border-bottom: 1px solid gray;
-      margin-left: 3%;
-      text-decoration: none;
+   
+    .CourseDetailLink {
+          margin-top: 2%;
+          margin-bottom: 1%;
+          margin: 2% 0% 1% 2%;
+          background-color: #5031ad ;
+          border-radius: 20px ;
+          box-shadow: none;
+          color: white;
+          width: 20%;
+
     }
 
     .percentage {
       display: flex;
-      align-items: center;
       font-size: 14px;
+      justify-content: flex-end;
+
 
       &.positive {
         color: #5031ad;
@@ -57,9 +70,8 @@
       border-radius: 5px;
       align-self: flex-end;
     }
-  }
-}
+  
+
 .widgetsContainer {
   background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
-
 }

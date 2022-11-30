@@ -11,6 +11,7 @@ const FeaturedStudent = () => {
         <h1 className="titleStudent">Summary</h1>
         <InsightsIcon fontSize="small" />
       </div>
+      
       <div className="bottom">
         <div className="featuredChart">
           <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
