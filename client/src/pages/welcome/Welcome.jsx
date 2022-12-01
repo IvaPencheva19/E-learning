@@ -12,19 +12,23 @@ const Welcome = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
-        {/* <Navbar /> */}
         <div className="demoB">
           <div className="backB"></div>
+
           <div className="frontB">
-            <div className="welcomeOverlay">
+          </div>
+
+          <div className="welcomeOverlay">
+            <div className="welcomeContainer">
               <div className="titleWelcome">
                 Join our e-learning <br></br>platform
               </div>
+
               <div className="welcomeButtons">
                 <Button
                   variant="outlined"
                   color="secondary"
-                  sx={{ height: "7vh", width: "7vw" }}
+                  className="button"
                   onClick={() => navigate("/login")}
                 >
                   Sign in
@@ -34,20 +38,17 @@ const Welcome = () => {
                   variant="contained"
                   onClick={() => navigate("/register")}
                   color="secondary"
-                  sx={{
-                    height: "7vh",
-                    width: "7vw",
-                    color: "white",
-                  }}
+                  className="button"
                 >
                   Sign up
                 </Button>
               </div>
             </div>
+
           </div>
         </div>
       </>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 
