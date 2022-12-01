@@ -1,25 +1,105 @@
 
-* {
-    font-family: 'Nunito',
-        sans-serif;
-}
-.welcomeContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
-    margin: 1rem;
-    width: 100%;
+// * {
+//     font-family: 'Nunito',
+//         sans-serif;
+// }
+// .welcomeContainer {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     gap: 1em;
+//     margin: 1rem;
+//     width: 100%;
     
 
-    .welcomeText {
-        font-size: 90px;
-        margin-left: 0.25rem;
-            font-family: 'Nunito',
-                    sans-serif;
-    }
+//     .welcomeText {
+//         font-size: 90px;
+//         margin-left: 0.25rem;
+//             font-family: 'Nunito',
+//                     sans-serif;
+//     }
 
-    .welcomeImg {
-        margin-right: 4rem;
-    }
+//     .welcomeImg {
+//         margin-right: 4rem;
+//     }
+// }
+
+
+ body,
+ html {
+     height: 100%;
+ }
+
+/* (A) CONTAINER - RESIZE AS REQUIRED */
+
+
+/* (B) LAYERS */
+.demoB {
+    position: relative;
+    width: 100%;
+        height: 100vh;
+}
+
+.backB,
+.frontB {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.backB {
+    z-index: 1;
+}
+
+/* behind */
+.frontB {
+    z-index: 2;
+}
+.titleWelcome{
+    z-index: 9;
+}
+
+/* in front */
+
+/* (C) BLURRED BACKGROUND IMAGE */
+.backB {
+    background-image: url(elearning-landing2.jpg);
+    
+   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(0px);
+}
+
+/* (D) FRONT TEXT */
+.frontB {
+    /* (D1) CENTER */
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+background-image: linear-gradient(90deg, rgba(211, 218, 237, 1) 0%, rgba(206, 166, 220, 0.8802871490393032) 87%);
+
+    opacity: 0.6;
+
+    /* (D2) COSMETICS */
+
+}
+.titleWelcome{
+    margin-top: -13%;
+    color: #fff;
+        font-size: 40px;
+        text-shadow: 2px 2px #545454;
+        
+}
+.welcomeButtons{
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-left: 10%;
+   z-index: 7;
 }

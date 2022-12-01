@@ -8,7 +8,7 @@ export const theme = createTheme({
       main: "#5031ad",
     },
     otherColor: {
-      main: "#999",
+      main: "#fff",
     },
     error: {
       main: "#ed2000",
