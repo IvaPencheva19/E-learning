@@ -27,10 +27,10 @@ function App() {
         <AuthProvider>
           <Routes>
             {/* accessed by everyone routes */}
-            <Route path="/" element={<Welcome />} />
 
             <Route element={<PublicRoute />}>
               {/* public routes */}
+              <Route path="/" element={<Welcome />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Route>
