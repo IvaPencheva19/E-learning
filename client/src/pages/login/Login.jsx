@@ -1,6 +1,7 @@
 import "./login.scss";
 import { useContext, useState } from "react";
 import jwt from "jwt-decode";
+import TextField from "@mui/material/TextField";
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Avatar from "@mui/material/Avatar";
@@ -82,7 +83,7 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <Grid
         container
@@ -90,8 +91,6 @@ const Login = () => {
         sx={{ height: "100vh" }}
         className="gradientContainer"
       >
-        <CssBaseline />
-
         <Grid item xs={false} sm={4} md={4} sx={{}} />
 
         <Grid
@@ -106,6 +105,7 @@ const Login = () => {
           sx={{}}
         >
           <Box
+            className="formContainer"
             sx={{
               my: 8,
               mx: 4,
@@ -124,7 +124,7 @@ const Login = () => {
               {errors.serverMsg && (
                 <p style={{ color: "red" }}>{errors.serverMsg}</p>
               )}
-              <TextValidator
+              <TextField
                 color="secondary"
                 margin="normal"
                 required
@@ -141,7 +141,7 @@ const Login = () => {
                 helperText={errors.email ? "Email is not valid" : ""}
               />
 
-              <TextValidator
+              <TextField
                 color="secondary"
                 margin="normal"
                 required
@@ -162,10 +162,10 @@ const Login = () => {
                 }
               />
 
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="secondary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 className="Button"
                 type="submit"
@@ -181,16 +181,7 @@ const Login = () => {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link
-                    href="/passwordRecovery"
-                    variant="body2"
-                    sx={{ color: "secondary.main" }}
-                  >
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
+                <Grid className="signUp">
                   <Link
                     href="/register"
                     variant="body2"

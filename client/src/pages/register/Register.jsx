@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import { ThemeProvider } from "@mui/material/styles";
+import Link from "@mui/material/Link";
 
 import BasicSelect from "../../components/select/Select";
 import Navbar from "../../components/navbar_welcome/Navbar";
@@ -97,19 +98,19 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Grid
         container
         component="main"
         sx={{ height: "100%" }}
         className="gradientContainer"
       >
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <Grid item xs={false} sm={4} md={4} sx={{}} />
         <Grid
           item
           xs={12}
-          sm={8}
+          sm={10}
           md={4}
           component={Paper}
           elevation={6}
@@ -298,6 +299,15 @@ export default function Register() {
               >
                 Register
               </Button>
+              <Grid className="signUp">
+                <Link
+                  href="/login"
+                  variant="body2"
+                  sx={{ color: "secondary.main" }}
+                >
+                  You already have an account? Sign In
+                </Link>
+              </Grid>
               <Grid container></Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
