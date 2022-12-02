@@ -7,7 +7,7 @@ import CourseContainerTeacher from "../../components/course_container/CourseCont
 import CourseContainerStudent from "../../components/course_container/CourseContainerStudent";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
+import Footer from "../../components/footer/Footer";
 const Home = () => {
   let { user } = useContext(AuthContext);
   const [course, setCourse] = useState([]);
@@ -25,18 +25,22 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home">
-      <Sidebar />
-      <div className="homeContainer">
-        <Navbar />
-        <div>
-          {(course.length != 0) && (user.role == "Teacher" ? (
-            <CourseContainerTeacher course={course} />
-          ) : (
-            <CourseContainerStudent course={course} />
-          ))}
+    <div>
+      <div className="home">
+        <Sidebar />
+        <div className="homeContainer">
+          <Navbar />
+          <div>
+            {course.length != 0 &&
+              (user.role == "Teacher" ? (
+                <CourseContainerTeacher course={course} />
+              ) : (
+                <CourseContainerStudent course={course} />
+              ))}
+          </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
