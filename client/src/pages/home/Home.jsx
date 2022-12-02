@@ -1,12 +1,13 @@
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
+
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
 import Summary from "../../components/summary/Summary";
-import AllCourses from "../../components/all_courses/AllCourses";
+import MyCourses from "../../components/my_courses/MyCourses";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Home = () => {
         <Navbar />
         <div className="charts">
           <Summary />
-          <AllCourses />
+          <MyCourses />
         </div>
       </div>
     </div>

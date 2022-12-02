@@ -1,23 +1,19 @@
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import "./all_courses.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
 import Widget from "../../components/widget/Widget";
-import {
-  LOCAL_STORAGE_KEY,
-  SERVER_AUTHORIZATION_HEADER_NAME,
-} from "../../config/constants";
+import { AuthContext } from "../../context/AuthContext";
 
 const Home = () => {
-  const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
+  const { user } = useContext(AuthContext);
 
-  const auth = JSON.parse(authData || "{}");
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
     courseService
-      .getCourses(auth._id, auth.role)
+      .getCourses(user._id, user.role)
       .then((result) => {
         setCourses((oldState) => [...result]);
       })
