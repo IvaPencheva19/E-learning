@@ -28,7 +28,7 @@ function Footer() {
           {" "}
           <ul type="none">
             <li>
-              <Link to="" className="link" sx={{ color: "#3e4143" }}>
+              <Link to="/contacts" className="link" sx={{ color: "#3e4143" }}>
                 {" "}
                 Contact us{" "}
               </Link>

@@ -21,6 +21,7 @@ const MyCourses = () => {
             .getCourses(user._id, user.role)
             .then((result) => {
                 setCourses((oldState) => [...result]);
+                setDisplayedCourses((oldState) => [...result]);
             })
             .catch((err) => {
                 console.error(err);

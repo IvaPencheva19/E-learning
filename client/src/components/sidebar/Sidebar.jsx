@@ -22,7 +22,6 @@ const Sidebar = () => {
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
             <span className="logo">HOME</span>
-            {/* <img className="logo" src="/img/logo1.png" alt="HOME" /> */}
           </Link>
         </div>
 
