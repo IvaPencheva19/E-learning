@@ -10,21 +10,28 @@ import { AuthContext } from "../../context/AuthContext";
 import CourseItem from "./CourseItem";
 
 const MyCourses = () => {
-    // get my courses and list them
     const [courses, setCourses] = useState([]);
+    const [displayedCourses, setDisplayedCourses] = useState([]);
+
     const { user } = useContext(AuthContext);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         courseService
             .getCourses(user._id, user.role)
             .then((result) => {
-                console.log(result);
                 setCourses((oldState) => [...result]);
             })
             .catch((err) => {
                 console.error(err);
             });
     }, []);
+
+    const onChangeHandler = (e) => {
+        setSearch((oldState) => e.target.value);
+        setDisplayedCourses(() =>
+            courses.filter(x => x.name.toLowerCase().includes(e.target.value.toLowerCase())));
+    }
 
     return (
         <>
@@ -37,12 +44,12 @@ const MyCourses = () => {
                 </div>
 
                 <div className="search">
-                    <input className="searchInput" type="text" placeholder="Search..." />
+                    <input onChange={onChangeHandler} className="searchInput" type="text" placeholder="Search..." />
                     <SearchOutlinedIcon className="iconSubject" />
                 </div>
 
                 <div className="coursesContainer">
-                    {courses.map((x) => <CourseItem key={x._id} item={x} />)}
+                    {displayedCourses.map((x) => <CourseItem key={x._id} item={x} />)}
                 </div>
             </div>
         </>

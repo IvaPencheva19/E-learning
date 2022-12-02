@@ -22,7 +22,7 @@
     justify-content: flex-start;
     gap: 2em;
 
-    margin-top: 3rem;
+    margin-top: 4rem;
     height: 60%;
 }
 
@@ -45,5 +45,5 @@
 
 .iconSubject {
     align-self: flex-end;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.3em;
 }

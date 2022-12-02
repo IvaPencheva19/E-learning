@@ -1,18 +1,25 @@
+.itemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .courseItem {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    font-size: large;
     height: 3rem !important;
     width: 100%;
     text-align: center;
-
+    padding-left: 0.5rem;
 }
 
-.courseItem:hover {
+.itemContainer:hover {
     overflow: hidden;
     border: solid 0.125rem gray;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: lighter;
 }

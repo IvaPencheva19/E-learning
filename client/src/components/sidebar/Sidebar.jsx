@@ -4,17 +4,13 @@ import { Link } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import SearchIcon from "@mui/icons-material/Search";
 import QuizIcon from "@mui/icons-material/Quiz";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import PostAddIcon from "@mui/icons-material/PostAdd";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
-import Button from "@mui/material/Button";
 import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
@@ -26,6 +22,7 @@ const Sidebar = () => {
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
             <span className="logo">HOME</span>
+            {/* <img className="logo" src="/img/logo1.png" alt="HOME" /> */}
           </Link>
         </div>
 
@@ -81,7 +78,7 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
-            <span className="logo">HOME</span>
+          <span className="logo">HOME</span>
           </Link>
         </div>
 

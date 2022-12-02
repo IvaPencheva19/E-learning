@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import "./courseItem.css";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { useNavigate } from "react-router-dom";
 
 
 const CourseItem = ({
@@ -14,7 +15,10 @@ const CourseItem = ({
 
     return (
         <>
-            <div className="infoTitle courseItem" onClick={onCourseClickHandler}> {item.name}</div>
+            <div onClick={onCourseClickHandler} className="itemContainer">
+                <div className="infoTitle courseItem"> {item.name}</div>
+                <AutoStoriesIcon />
+            </div>
         </>
     );
 }
