@@ -25,7 +25,7 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
-            <span className="logo">Landing Page</span>
+            <span className="logo">HOME</span>
           </Link>
         </div>
 
@@ -52,10 +52,6 @@ const Sidebar = () => {
                 <span>Add new course</span>
               </li>
             </Link>
-            {/* <li>
-              <PersonAddAlt1Icon className="icon" />
-              <span>Student's requests</span>
-            </li> */}
 
             <li>
               <QuizIcon className="icon" />
@@ -76,26 +72,6 @@ const Sidebar = () => {
               <NotificationsNoneIcon className="icon" />
               <span>Notifications</span>
             </li>
-
-            {/* <p className="title">USER</p>
-
-            <Link to="/profile" style={{ textDecoration: "none" }}>
-              <li>
-                <AccountCircleOutlinedIcon className="icon" />
-                <span>Profile</span>
-              </li>
-            </Link>
-
-            <Link
-              to="/"
-              onClick={userLogout}
-              style={{ textDecoration: "none" }}
-            >
-              <li>
-                <ExitToAppIcon className="icon" />
-                <span>Logout</span>
-              </li>
-            </Link> */}
           </ul>
         </div>
       </div>
@@ -105,7 +81,7 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
-            <span className="logo">Landing Page</span>
+            <span className="logo">HOME</span>
           </Link>
         </div>
 
@@ -154,18 +130,6 @@ const Sidebar = () => {
               <NotificationsNoneIcon className="icon" />
               <span>Notifications</span>
             </li>
-            {/* 
-            <p className="title">USER</p>
-            <Link to="/profile" style={{ textDecoration: "none" }}>
-              <li>
-                <AccountCircleOutlinedIcon className="icon" />
-                <span>Profile</span>
-              </li>
-            </Link>
-            <li onClick={userLogout}>
-              <ExitToAppIcon className="icon" />
-              <span>Logout</span>
-            </li> */}
           </ul>
         </div>
       </div>
