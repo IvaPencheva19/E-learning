@@ -1,0 +1,46 @@
+.allCoursesContainer {
+    flex: 2;
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(80,
+            49,
+            173, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(206,
+            166,
+            220, 0.47);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    max-width: 40%;
+}
+
+
+.coursesContainer {
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchInput {
+    margin-top: 2em;
+    margin-left: 2em;
+
+    font-size: large    ;
+
+    border-radius: 7px;
+    width: 20em;
+    height: 3em;
+}
+
+.iconSubject {
+    align-self: flex-end;
+    margin-bottom: 0.6em;
+}
