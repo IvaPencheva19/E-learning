@@ -4,7 +4,6 @@ import jwt from "jwt-decode";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -15,7 +14,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import Link from "@mui/material/Link";
 
 import BasicSelect from "../../components/select/Select";
-import Navbar from "../../components/navbar_welcome/Navbar";
 
 import { theme } from "../../utils/theme";
 import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
@@ -59,8 +57,7 @@ export default function Register() {
     repeatPassword: "",
     firstName: "",
     lastName: "",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png",
+    imageUrl: "",
     courses: [],
   });
 
@@ -77,6 +74,10 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (values.imageUrl == '') {
+      values.imageUrl = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png';
+    }
 
     authService
       .register(values)
@@ -225,7 +226,6 @@ export default function Register() {
               <TextField
                 color="secondary"
                 margin="normal"
-                required
                 fullWidth
                 id="imageUrl"
                 label="Image url"
@@ -233,7 +233,7 @@ export default function Register() {
                 autoComplete="text"
                 value={values.imageUrl}
                 onChange={changeHandler}
-                // onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
+              // onBlur={(e) => minLengthValidator(e, 2, setErrors, values)}
               />
 
               <BasicSelect

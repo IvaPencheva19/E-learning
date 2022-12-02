@@ -31,9 +31,16 @@
 
 .searchInput {
     margin-top: 2em;
-    margin-left: 2.5em;
+    margin-left: 2em;
+
+    font-size: large    ;
+
+    border-radius: 7px;
+    width: 20em;
+    height: 3em;
 }
 
 .iconSubject {
     align-self: flex-end;
+    margin-bottom: 0.6em;
 }

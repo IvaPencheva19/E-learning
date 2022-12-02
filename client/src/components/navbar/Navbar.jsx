@@ -11,6 +11,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="wrapper">
+        <span className="empty"></span>
         <div className="items">
           <div className="item">
             <img
