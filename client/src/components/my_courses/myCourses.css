@@ -15,12 +15,15 @@
 
 
 .coursesContainer {
-    padding: 70px;
     display: flex;
     flex-direction: column;
+
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 2em;
+
+    margin-top: 3rem;
+    height: 60%;
 }
 
 .search {
@@ -33,7 +36,7 @@
     margin-top: 2em;
     margin-left: 2em;
 
-    font-size: large    ;
+    font-size: large;
 
     border-radius: 7px;
     width: 20em;

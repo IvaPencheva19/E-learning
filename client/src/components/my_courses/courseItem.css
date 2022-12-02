@@ -1,0 +1,17 @@
+.courseItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: large;
+    height: 3rem !important;
+    width: 100%;
+    text-align: center;
+
+}
+
+.courseItem:hover {
+    overflow: hidden;
+    border: solid 0.125rem gray;
+    border-radius: 8px;
+}

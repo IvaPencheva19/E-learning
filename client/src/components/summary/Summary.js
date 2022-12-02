@@ -6,7 +6,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-
 const Summary = () => {
     const { user } = useContext(AuthContext);
 
