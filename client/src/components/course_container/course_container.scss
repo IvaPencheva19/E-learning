@@ -15,8 +15,8 @@
 margin-right: 2%;
 
 
-  .left,
-  .right {
+  .leftCourse,
+  .rightCourse {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,7 +30,7 @@ margin-right: 2%;
     }
   }
 }
-.right:hover{
+.rightCourse:hover{
     color: #a0a0a0;
 
 }

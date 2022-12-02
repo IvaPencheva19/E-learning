@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, userLogout } = useContext(AuthContext);
@@ -28,42 +29,43 @@ const Navbar = () => {
         </Button>
       </>
     );
-  }
+  };
 
   const userButtons = () => {
     return (
       <>
-        <Button variant="contained"
+        <Button
+          variant="contained"
           sx={{
             color: "white",
           }}
-          onClick={() => navigate("/home")}>
+          onClick={() => navigate("/home")}
+        >
           Home
         </Button>
-        
-        <Button variant="contained"
+
+        <Button
+          variant="contained"
           sx={{
             color: "white",
           }}
-          onClick={userLogout}>
+          onClick={userLogout}
+        >
           Logout
         </Button>
       </>
     );
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <div className="navWrapper">
-        <Link to="/" >
+        <Link to="/">
           <img className="navbarLogo" src="./img/connect.webp" alt="" />
         </Link>
 
         <div className="navButtonsContainer">
-          {user.email
-            ? userButtons()
-            : noUserButtons()
-          }
+          {user.email ? userButtons() : noUserButtons()}
         </div>
       </div>
     </ThemeProvider>

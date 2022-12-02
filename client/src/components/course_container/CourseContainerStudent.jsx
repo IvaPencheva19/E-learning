@@ -56,7 +56,7 @@ const CourseContainerStudent = ({ course }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="course">
-        <div className="left">
+        <div className="leftCourse">
           <span className="titleCourse">
             {course.name}
             <span id="category">
@@ -73,7 +73,7 @@ const CourseContainerStudent = ({ course }) => {
           <span className="desc"> {course.description}</span>
         </div>
 
-        <div className="right">
+        <div className="rightCourse">
           <div className="percentage positive">
             <InsightsIcon />
           </div>
