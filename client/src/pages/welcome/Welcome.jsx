@@ -5,7 +5,10 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { theme } from "../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import * as React from "react";
 
+import Footer from "../../components/footer/Footer";
 const Welcome = () => {
   const navigate = useNavigate();
 
@@ -15,8 +18,7 @@ const Welcome = () => {
         <div className="demoB">
           <div className="backB"></div>
 
-          <div className="frontB">
-          </div>
+          <div className="frontB"></div>
 
           <div className="welcomeOverlay">
             <div className="welcomeContainer">
@@ -44,11 +46,11 @@ const Welcome = () => {
                 </Button>
               </div>
             </div>
-
           </div>
         </div>
+        <Footer />
       </>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 };
 

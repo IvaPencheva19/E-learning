@@ -13,6 +13,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 import EditCourseDialog from "./edit_course_dialog/EditCourseDialog";
+import Footer from "../../components/footer/Footer";
 
 const CourseContainerTeacher = ({ course }) => {
   const navigate = useNavigate();
