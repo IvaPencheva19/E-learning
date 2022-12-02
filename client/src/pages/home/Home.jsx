@@ -9,21 +9,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import * as courseService from "../../services/courseService";
-import {
-  LOCAL_STORAGE_KEY,
-  SERVER_AUTHORIZATION_HEADER_NAME,
-} from "../../config/constants";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
-  const authData = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-  const auth = JSON.parse(authData || "{}");
 
   useEffect(() => {
     courseService
-      .getCourses(auth._id, auth.role)
+      .getCourses(user._id, user.role)
       .then((result) => {
         setCourses(result);
       })
@@ -42,13 +36,13 @@ const Home = () => {
 
       <div className="homeContainer">
         <Navbar />
-        <div className="widgets">
+        {/* <div className="widgets">
           {courses.length > 0 ? (
             courses.map((x) => <Widget key={x._id} course={x} />)
           ) : (
             <p>No current courses available!</p>
           )}
-        </div>
+        </div> */}
         <div className="charts">
           {user.role === "Student" ? <FeaturedStudent /> : <FeaturedTeacher />}
 
