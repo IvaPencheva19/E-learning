@@ -28,7 +28,7 @@ function ResultContainer({ user, quiz, resultAnswers }) {
   return (
     <div>
       <div className="quiz">
-        <div className="left">
+        <div className="leftQuiz">
           <span className="quizTitle">{quiz.title}</span>
 
           <span className="descResult">
@@ -36,7 +36,7 @@ function ResultContainer({ user, quiz, resultAnswers }) {
           </span>
         </div>
 
-        <div className="right">
+        <div className="rightQuiz">
           {" "}
           <div className="progress">
             <CircularProgressbar

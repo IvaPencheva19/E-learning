@@ -62,7 +62,7 @@ const CourseContainerTeacher = ({ course }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="course">
-        <div className="left">
+        <div className="leftCourse">
           <span className="titleCourse">
             {course.name}
             <Chip
@@ -103,7 +103,7 @@ const CourseContainerTeacher = ({ course }) => {
           </span>
         </div>
 
-        <div className="right">
+        <div className="rightCourse">
           <EditIcon sx={{}} onClick={handleEditCourse} />
         </div>
       </div>

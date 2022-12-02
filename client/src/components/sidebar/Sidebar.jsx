@@ -32,14 +32,14 @@ const Sidebar = () => {
         <hr />
         <div className="center">
           <ul>
-            <p className="title">MAIN</p>
+            <p className="titleSidebar">MAIN</p>
             <Link to="/home" style={{ textDecoration: "none" }}>
               <li>
                 <DashboardIcon className="icon" />
-                <span>Dashboard</span>
+                <span>Home</span>
               </li>
             </Link>
-            <p className="title">COURSERS</p>
+            <p className="titleSidebar">COURSERS</p>
             <Link to="/course" style={{ textDecoration: "none" }}>
               <li>
                 <LibraryBooksIcon className="icon" />
@@ -52,10 +52,10 @@ const Sidebar = () => {
                 <span>Add new course</span>
               </li>
             </Link>
-            <li>
+            {/* <li>
               <PersonAddAlt1Icon className="icon" />
               <span>Student's requests</span>
-            </li>
+            </li> */}
 
             <li>
               <QuizIcon className="icon" />
@@ -67,7 +67,7 @@ const Sidebar = () => {
               <span>Results</span>
             </li>
 
-            <p className="title">USEFUL</p>
+            <p className="titleSidebar">USEFUL</p>
             <li>
               <InsertChartIcon className="icon" />
               <span>Stats</span>
@@ -77,7 +77,7 @@ const Sidebar = () => {
               <span>Notifications</span>
             </li>
 
-            <p className="title">USER</p>
+            {/* <p className="title">USER</p>
 
             <Link to="/profile" style={{ textDecoration: "none" }}>
               <li>
@@ -95,7 +95,7 @@ const Sidebar = () => {
                 <ExitToAppIcon className="icon" />
                 <span>Logout</span>
               </li>
-            </Link>
+            </Link> */}
           </ul>
         </div>
       </div>
@@ -112,14 +112,14 @@ const Sidebar = () => {
         <hr />
         <div className="center">
           <ul>
-            <p className="title">MAIN</p>
+            <p className="titleSidebar">MAIN</p>
             <Link to="/home" style={{ textDecoration: "none" }}>
               <li>
                 <DashboardIcon className="icon" />
-                <span>Dashboard</span>
+                <span>Home</span>
               </li>
             </Link>
-            <p className="title">COURSERS</p>
+            <p className="titleSidebar">COURSES</p>
             <Link to="/course" style={{ textDecoration: "none" }}>
               <li>
                 <LibraryBooksIcon className="icon" />
@@ -145,7 +145,7 @@ const Sidebar = () => {
               </li>
             </Link>
 
-            <p className="title">USEFUL</p>
+            <p className="titleSidebar">USEFUL</p>
             <li>
               <InsertChartIcon className="icon" />
               <span>Stats</span>
@@ -154,7 +154,7 @@ const Sidebar = () => {
               <NotificationsNoneIcon className="icon" />
               <span>Notifications</span>
             </li>
-
+            {/* 
             <p className="title">USER</p>
             <Link to="/profile" style={{ textDecoration: "none" }}>
               <li>
@@ -165,7 +165,7 @@ const Sidebar = () => {
             <li onClick={userLogout}>
               <ExitToAppIcon className="icon" />
               <span>Logout</span>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
