@@ -52,7 +52,7 @@ const Contacts = () => {
             <img className="contactImg" src="/img/contactPage.webp" alt="" />
 
             <div className="welcomeOverlay">
-                
+
                 <div className="contactNavigation">
                     {user.email ?
                         loggedUserNav()
@@ -60,7 +60,7 @@ const Contacts = () => {
                         guestUserNav()
                     }
                 </div>
-                
+
                 <div className="contactPageContainer">
                     <div className="titleWelcome">
                         Do not bother to <br></br> contact us
@@ -105,7 +105,7 @@ const Contacts = () => {
                     </div>
                 </div>
 
-                <Footer className={"contactsFooter"} />
+                <Footer className={"footerAddition"}/>
             </div>
         </>
     );

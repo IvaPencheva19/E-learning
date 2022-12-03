@@ -138,13 +138,8 @@ input.contactTextArea {
     text-align: center;
 }
 
-.contactsFooter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 5;
+.footerAddition {
     position: absolute;
     top: 46rem;
-    left: 20rem;
+    width: 100vw;
 }
