@@ -122,4 +122,5 @@ input.contactTextArea {
     border: 1.5px solid #816ac6;
     border-radius: 5px;
     color: #816ac6;
+    cursor: pointer;
 }
