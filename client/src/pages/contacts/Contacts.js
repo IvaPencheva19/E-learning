@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { useState } from "react";
 
 const Contacts = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
+
+    const [show, setShow] = useState(true);
 
     const loggedUserNav = () => {
         return (
@@ -37,6 +40,11 @@ const Contacts = () => {
             </>);
     }
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+        setShow((old) => !old);
+    }
+
     return (
         <>
             <div className="frontB"></div>
@@ -56,36 +64,41 @@ const Contacts = () => {
                     </div>
 
                     <div className="contactFormContainer">
-                        <form className="contactForm" action="">
+                        {
+                            show ?
+                                <form onSubmit={submitHandler} className="contactForm" action="">
 
+                                    {user.email ?
+                                        <label className="labelForm pad" htmlFor="subject">
+                                            We will answer you as soon as possible
+                                        </label>
+                                        :
+                                        (<>
+                                            <label className="labelForm" htmlFor="subject">
+                                                Enter your e-mail
+                                            </label>
+                                            <input
+                                                className="contactTextArea"
+                                                id="subject"
+                                                name="subject"
+                                                placeholder="email@address.com" />
+                                        </>)
+                                    }
 
-
-                            {user.email ?
-                                <label className="labelForm pad" htmlFor="subject">
-                                    We will answer you as soon as possible
-                                </label>
-                                :
-                                (<>
-                                    <label className="labelForm" htmlFor="subject">
-                                        Enter your e-mail
-                                    </label>
-                                    <input
+                                    <textarea
                                         className="contactTextArea"
                                         id="subject"
                                         name="subject"
-                                        placeholder="email@address.com" />
-                                </>)
-                            }
+                                        placeholder="Ask your question here..."
+                                    ></textarea>
 
-                            <textarea
-                                className="contactTextArea"
-                                id="subject"
-                                name="subject"
-                                placeholder="Ask your question here..."
-                            ></textarea>
-
-                            <input className="contactSubmit" type="submit" value="Send" />
-                        </form>
+                                    <input className="contactSubmit" type="submit" value="Send" />
+                                </form>
+                                :
+                                <label className="submissionMessage" htmlFor="subject">
+                                    Thanks for your question!<br></br> We will answer with an email in 1 business day!
+                                </label>
+                        }
                     </div>
                 </div>
             </div>

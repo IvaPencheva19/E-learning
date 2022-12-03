@@ -124,3 +124,16 @@ input.contactTextArea {
     color: #816ac6;
     cursor: pointer;
 }
+
+.submissionMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-shadow: 1px 1px #5031ad;
+
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
