@@ -1,5 +1,4 @@
 import "./contacts.css";
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -8,13 +7,49 @@ import { useContext } from "react";
 const Contacts = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
+
+    const loggedUserNav = () => {
+        return (
+            <button
+                onClick={() => navigate("/home")}
+                className="contactNavButton"
+            >
+                Home
+            </button>);
+    }
+
+    const guestUserNav = () => {
+        return (
+            <>
+                <button
+                    onClick={() => navigate("/login")}
+                    className="contactNavButton"
+                >
+                    Sign in
+                </button>
+
+                <button
+                    onClick={() => navigate("/register")}
+                    className="contactNavButton"
+                >
+                    Sign up
+                </button>
+            </>);
+    }
+
     return (
         <>
             <div className="frontB"></div>
             <img className="contactImg" src="/img/contactPage.webp" alt="" />
 
             <div className="welcomeOverlay">
-
+                <div className="contactNavigation">
+                    {user.email ?
+                        loggedUserNav()
+                        :
+                        guestUserNav()
+                    }
+                </div>
                 <div className="contactPageContainer">
                     <div className="titleWelcome">
                         Do not bother to <br></br> contact us
@@ -23,12 +58,12 @@ const Contacts = () => {
                     <div className="contactFormContainer">
                         <form className="contactForm" action="">
 
-                            <label className="labelForm pad" htmlFor="subject">
-                                We will answer you as soon as possible
-                            </label>
+
 
                             {user.email ?
-                                ''
+                                <label className="labelForm pad" htmlFor="subject">
+                                    We will answer you as soon as possible
+                                </label>
                                 :
                                 (<>
                                     <label className="labelForm" htmlFor="subject">
@@ -60,20 +95,3 @@ const Contacts = () => {
 
 export default Contacts;
 
-{/* <Button
-                            variant="outlined"
-                            color="secondary"
-                            className="button"
-                            onClick={() => navigate("/login")}
-                        >
-                            Sign in
-                        </Button>
-
-                        <Button
-                            variant="contained"
-                            onClick={() => navigate("/register")}
-                            color="secondary"
-                            className="button"
-                        >
-                            Sign up
-                        </Button> */}
