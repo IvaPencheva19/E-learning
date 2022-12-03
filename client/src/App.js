@@ -19,6 +19,7 @@ import AddQuiz from "./pages/add_quiz/AddQuiz";
 import ViewAllQuizzesPage from "./pages/view_all_quizzes/ViewAllQuizzesPage";
 import MakeQuizPage from "./pages/make_quiz/MakeQuizPage";
 import ViewAllResultsStudentPage from "./pages/view_all_results_student/ViewAllResultsStudentPage";
+import Contacts from "./pages/contacts/Contacts";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <AuthProvider>
           <Routes>
             {/* accessed by everyone routes */}
+            <Route path="/contacts" element={<Contacts />} />
 
             <Route element={<PublicRoute />}>
               {/* public routes */}
@@ -46,7 +48,6 @@ function App() {
               <Route element={<StudentRoute />}>
                 {/* user with student role */}
               </Route>
-
               <Route path="/home" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/course" element={<AllCourses />} />

@@ -1,11 +1,8 @@
-import Typography from "@mui/material/Typography";
 import "./welcome.scss";
-import Navbar from "../../components/navbar_welcome/Navbar";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { theme } from "../../utils/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 import * as React from "react";
 
 import Footer from "../../components/footer/Footer";
