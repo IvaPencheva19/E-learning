@@ -24,6 +24,7 @@ import {
 } from "../../utils/validators";
 import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
+import Footer from "../../components/footer/Footer";
 
 function Copyright(props) {
   return (
@@ -315,6 +316,8 @@ export default function Register() {
         </Grid>
         <Grid item xs={false} sm={4} md={4} sx={{}} />
       </Grid>
+
+      <Footer />
     </ThemeProvider>
   );
 }

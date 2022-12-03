@@ -1,15 +1,6 @@
-import Typography from "@mui/material/Typography";
 import "./footer.scss";
-import Navbar from "../../components/navbar_welcome/Navbar";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { theme } from "../../utils/theme";
-import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
@@ -20,9 +11,11 @@ import GppGoodIcon from "@mui/icons-material/GppGood";
 
 import React from "react";
 
-function Footer() {
+function Footer({
+  className
+}) {
   return (
-    <div className="footer">
+    <div className={`footer ${className}`} >
       <Grid container spacing={2}>
         <Grid item xs={8}>
           {" "}
@@ -74,7 +67,7 @@ function Footer() {
           </ul>
         </Grid>
       </Grid>
-    </div>
+    </div >
   );
 }
 

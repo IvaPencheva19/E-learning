@@ -4,6 +4,7 @@ import * as React from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 import { useState } from "react";
+import Footer from "../../components/footer/Footer";
 
 const Contacts = () => {
     const navigate = useNavigate();
@@ -51,6 +52,7 @@ const Contacts = () => {
             <img className="contactImg" src="/img/contactPage.webp" alt="" />
 
             <div className="welcomeOverlay">
+                
                 <div className="contactNavigation">
                     {user.email ?
                         loggedUserNav()
@@ -58,6 +60,7 @@ const Contacts = () => {
                         guestUserNav()
                     }
                 </div>
+                
                 <div className="contactPageContainer">
                     <div className="titleWelcome">
                         Do not bother to <br></br> contact us
@@ -101,6 +104,8 @@ const Contacts = () => {
                         }
                     </div>
                 </div>
+
+                <Footer className={"contactsFooter"} />
             </div>
         </>
     );

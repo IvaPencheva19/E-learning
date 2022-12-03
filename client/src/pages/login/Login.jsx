@@ -6,9 +6,6 @@ import TextField from "@mui/material/TextField";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -17,12 +14,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@mui/material/styles";
 
-import Navbar from "../../components/navbar_welcome/Navbar";
 import { SERVER_AUTHORIZATION_HEADER_NAME } from "../../config/constants";
 import { theme } from "../../utils/theme";
 import { emailValidator, minLengthValidator } from "../../utils/validators";
 import * as authService from "../../services/authService";
 import { AuthContext } from "../../context/AuthContext";
+import Footer from "../../components/footer/Footer";
 
 function Copyright(props) {
   return (
@@ -197,6 +194,8 @@ const Login = () => {
         </Grid>
         <Grid item xs={false} sm={4} md={4} sx={{}} />
       </Grid>
+
+      <Footer />
     </ThemeProvider>
   );
 };
